@@ -17,8 +17,8 @@ title: lqb2 & co.
 email: lawrence@lqb2.co
 description: >- # this means to ignore newlines until "baseurl:"
   transform yourself, transform the world — grace lee boggs
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://www.lqb2.co" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/lqb2.5" # fork preview; use "" for production (lqb2.co)
+url: "https://jj-javascript.github.io" # fork preview; use https://www.lqb2.co for production
 icon: /assets/images/icon-512.png
 twitter_username: lqb2
 github_username:  lqb2
@@ -41,5 +41,14 @@ markdown: kramdown
 plugins:
   - jekyll-paginate
 
+collections:
+  books:
+    output: false
+
 paginate: 1
 paginate_path: "/page/:num/"
+
+exclude:
+  - harvest.py
+  - harvest-report.txt
+  - verify-build.sh

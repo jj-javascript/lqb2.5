@@ -1,0 +1,57 @@
+<article class="book-card{% if include.book.sample %} book-card--sample{% endif %}{% unless include.book.content %} book-card--no-review{% endunless %}"
+         data-title="{{ include.book.title | downcase }}"
+         data-author="{{ include.book.author | downcase }}"
+         tabindex="0"
+         aria-label="Flip to see review for {{ include.book.title }}">
+  <div class="book-shelf-tilt">
+    <div class="book-flip">
+    <div class="book-flip-inner">
+      <div class="book-flip-front">
+        <img class="book-cover"
+             src="{{ include.book.cover | absolute_url }}"
+             alt="{{ include.book.title }} by {{ include.book.author }}"
+             width="{{ include.book.cover_width | default: 200 }}"
+             height="{{ include.book.cover_height | default: 300 }}"
+             loading="lazy">
+      </div>
+      <div class="book-flip-back" aria-hidden="true">
+        <div class="book-back-content">
+          <div class="book-back-scroll">
+            {% if include.book.content != "" %}
+              {% if include.book.review %}
+                <h4 class="book-review-heading">My review</h4>
+              {% else %}
+                <h4 class="book-review-heading">GoodReads Description</h4>
+              {% endif %}
+              <div class="book-review">{{ include.book.content | markdownify }}</div>
+            {% else %}
+              <p class="book-review-empty">No review yet.</p>
+            {% endif %}
+            <div class="book-back-actions">
+              {% if include.book.highlights %}
+                <a class="book-action book-action--notes"
+                   href="{{ include.book.highlights }}"
+                   target="_blank"
+                   rel="noopener noreferrer">Notes</a>
+              {% endif %}
+              {% if include.book.goodreads %}
+                <a class="book-action book-action--goodreads"
+                   href="{{ include.book.goodreads }}"
+                   target="_blank"
+                   rel="noopener noreferrer">Goodreads</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <span class="visually-hidden book-meta">
+    <h3 class="book-title">{{ include.book.title }}</h3>
+    <p class="book-author">{{ include.book.author }}</p>
+    {% if include.book.year_read %}
+      <p class="book-year">Read {{ include.book.year_read }}</p>
+    {% endif %}
+  </span>
+</article>

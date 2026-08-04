@@ -20,6 +20,9 @@
     
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab:300|Roboto:500" rel="stylesheet">
 
+    {% if page.layout == 'bookshelf' %}
+      <script src="{{ '/assets/js/shelf.js' | absolute_url }}" defer></script>
+    {% endif %}
 
   </head>
   <body>

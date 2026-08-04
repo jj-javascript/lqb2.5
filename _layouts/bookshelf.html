@@ -1,0 +1,57 @@
+---
+layout: default
+---
+
+{% include menu.html %}
+
+<article class="bookshelf-page bookshelf-page--wood" id="main" role="main" aria-label="Bookshelf">
+  <header class="bookshelf-header">
+    <h1 class="bookshelf-title">{{ page.title }}</h1>
+    {% if page.subtitle %}
+      <p class="bookshelf-subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+    <div class="bookshelf-controls">
+      <label for="bookSearch" class="visually-hidden">Search books</label>
+      <input type="search" id="bookSearch" class="bookshelf-search" placeholder="Search books…" autocomplete="off">
+      <p class="bookshelf-hint">Click a cover to flip and read the review.</p>
+    </div>
+  </header>
+
+  <section class="bookshelf-unit" aria-label="Curated books">
+    {% assign curated = site.books | where_exp: "item", "item.sample != true" | sort: "year_read" | reverse %}
+    {% assign books_per_row = 5 %}
+    {% assign last_in_row = books_per_row | minus: 1 %}
+    {% for book in curated %}
+      {% assign mod = forloop.index0 | modulo: books_per_row %}
+      {% if mod == 0 %}
+        <div class="shelf-row">
+      {% endif %}
+        {% include book-card.html book=book %}
+      {% if mod == last_in_row or forloop.last %}
+        </div>
+      {% endif %}
+    {% endfor %}
+    <p class="bookshelf-empty" id="bookshelfEmpty" hidden>No books match your search.</p>
+  </section>
+
+  {% assign samples = site.books | where: "sample", true %}
+  {% if samples.size > 0 %}
+    <section class="bookshelf-sample" aria-label="Sample shelf">
+      <h2 class="bookshelf-sample-heading">Also on my shelf — a sample</h2>
+      <p class="bookshelf-sample-note">A glimpse of the full Goodreads shelf. These titles are not part of the curated set above.</p>
+      <div class="bookshelf-unit bookshelf-unit--sample">
+        {% assign last_in_row = books_per_row | minus: 1 %}
+        {% for book in samples %}
+          {% assign mod = forloop.index0 | modulo: books_per_row %}
+          {% if mod == 0 %}
+            <div class="shelf-row">
+          {% endif %}
+            {% include book-card.html book=book %}
+          {% if mod == last_in_row or forloop.last %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+</article>
