@@ -257,10 +257,13 @@ $shelf-paper: #f5f0e6;
   height: 100%;
   padding: 0.6rem 0.5rem;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .book-back-scroll {
-  height: 100%;
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
@@ -317,10 +320,11 @@ $shelf-paper: #f5f0e6;
   flex-wrap: wrap;
   gap: 0.35rem;
   justify-content: center;
-  margin-top: 0.45rem;
-  padding-top: 0.4rem;
-  padding-bottom: 0.15rem;
-  border-top: 1px solid darken($shelf-paper, 15%);
+  margin-bottom: 0.45rem;
+  padding-bottom: 0.4rem;
+  padding-top: 0.15rem;
+  border-bottom: 1px solid darken($shelf-paper, 15%);
+  flex-shrink: 0;
 }
 
 .book-action {

@@ -188,3 +188,29 @@ The code for this theme is available as open source under the terms of the [MIT 
 The font, EB Garamond, is Copyright 2017 The EB Garamond Project Authors and licensed under the [SIL Open Font License Version 1.1](https://github.com/patdryburgh/hitchens/blob/master/assets/fonts/OFL.txt).
 
 Graphics are released to the public domain.
+
+## Bookshelf
+
+The bookshelf at `/bookshelf.html` is built from a Jekyll `_books/` collection — one markdown file per title with cover art, Goodreads links, and optional reading-notes URLs.
+
+### Adding a book (prefilled GitHub link)
+
+Use this link to open the GitHub web editor with a new book template pre-filled:
+
+```
+https://github.com/lqb2/lqb2.github.io/new/master?filename=_books/NEW-SLUG.md&value=%3C!--%20delete%20this%20line%20to%20enable%20the%20commit%20button%20--%3E%0A---%0Atitle%3A%20%22Book%20Title%22%0Aauthor%3A%20%22Author%20Name%22%0Acover%3A%20%2Fassets%2Fimages%2Fbooks%2Fslug.webp%0Acover_width%3A%20200%0Acover_height%3A%20300%0Agoodreads%3A%20https%3A%2F%2Fwww.goodreads.com%2Fbook%2Fshow%2FID%0Ahighlights%3A%20https%3A%2F%2Fdocs.google.com%2Fdocument%2Fd%2F...%2Fedit%0Areview%3A%20false%0Ayear_read%3A%202026%0Asample%3A%20false%0A---%0A%0AOptional%20summary%20or%20review%20text%20here.%0A
+```
+
+GitHub sometimes keeps the Commit button disabled until you edit something. The first line is a comment (`<!-- delete this line to enable the commit button -->`) — delete it and the commit button should activate.
+
+### Cover images
+
+1. Find the cover on [Goodreads](https://www.goodreads.com) (open the book page → right-click the cover image).
+2. Save or download the largest available image.
+3. Resize to ~200px wide and convert to WebP (quality ~80). From the command line with Pillow: `python3 -c "from PIL import Image; im=Image.open('cover.jpg'); im.resize((200,int(im.height*200/im.width))).save('slug.webp','WEBP',quality=80)"`
+4. Commit the `.webp` file to `assets/images/books/slug.webp` and reference it in the book's front matter.
+
+### Refreshing from Goodreads
+
+To bulk-refresh book data from the Goodreads RSS feed, run `python3 harvest.py` locally (requires `pip3 install Pillow requests`). This is a one-time/local tool — delete `harvest.py` before merging to the main site repo.
+

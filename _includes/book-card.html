@@ -16,6 +16,20 @@
       </div>
       <div class="book-flip-back" aria-hidden="true">
         <div class="book-back-content">
+          <div class="book-back-actions">
+            {% if include.book.highlights %}
+              <a class="book-action book-action--notes"
+                 href="{{ include.book.highlights }}"
+                 target="_blank"
+                 rel="noopener noreferrer">Notes</a>
+            {% endif %}
+            {% if include.book.goodreads %}
+              <a class="book-action book-action--goodreads"
+                 href="{{ include.book.goodreads }}"
+                 target="_blank"
+                 rel="noopener noreferrer">Goodreads</a>
+            {% endif %}
+          </div>
           <div class="book-back-scroll">
             {% if include.book.content != "" %}
               {% if include.book.review %}
@@ -27,20 +41,6 @@
             {% else %}
               <p class="book-review-empty">No review yet.</p>
             {% endif %}
-            <div class="book-back-actions">
-              {% if include.book.highlights %}
-                <a class="book-action book-action--notes"
-                   href="{{ include.book.highlights }}"
-                   target="_blank"
-                   rel="noopener noreferrer">Notes</a>
-              {% endif %}
-              {% if include.book.goodreads %}
-                <a class="book-action book-action--goodreads"
-                   href="{{ include.book.goodreads }}"
-                   target="_blank"
-                   rel="noopener noreferrer">Goodreads</a>
-              {% endif %}
-            </div>
           </div>
         </div>
       </div>
