@@ -15,21 +15,60 @@
   var curatedCards = cards.filter(function (card) {
     return !card.classList.contains('book-card--sample');
   });
+  var curatedUnit = document.querySelector('.bookshelf-page > .bookshelf-unit');
+  var shelfRows = curatedUnit
+    ? Array.prototype.slice.call(curatedUnit.querySelectorAll('.shelf-row'))
+    : [];
+  var booksPerRow = shelfRows.length
+    ? shelfRows[0].querySelectorAll('.book-card').length || 5
+    : 5;
+  var originalOrder = curatedCards.slice();
   var activeCard = null;
   var modalTransitionMs = 300;
+
+  function layoutCards(cardList) {
+    cardList.forEach(function (card, index) {
+      var row = shelfRows[Math.floor(index / booksPerRow)];
+      if (row) {
+        row.appendChild(card);
+      }
+    });
+
+    shelfRows.forEach(function (row) {
+      row.hidden = !row.querySelector('.book-card:not(.hidden)');
+    });
+  }
 
   function filterBooks() {
     if (!searchInput) return;
     var query = searchInput.value.trim().toLowerCase();
     var visible = 0;
+    var matches = [];
 
     curatedCards.forEach(function (card) {
       var title = card.getAttribute('data-title') || '';
       var author = card.getAttribute('data-author') || '';
       var match = !query || title.indexOf(query) !== -1 || author.indexOf(query) !== -1;
       card.classList.toggle('hidden', !match);
-      if (match) visible += 1;
+      if (match) {
+        visible += 1;
+        matches.push(card);
+      }
     });
+
+    if (query) {
+      matches.sort(function (a, b) {
+        var titleA = a.getAttribute('data-title') || '';
+        var titleB = b.getAttribute('data-title') || '';
+        return titleA.localeCompare(titleB);
+      });
+      layoutCards(matches);
+    } else {
+      curatedCards.forEach(function (card) {
+        card.classList.remove('hidden');
+      });
+      layoutCards(originalOrder);
+    }
 
     if (emptyMsg) {
       emptyMsg.hidden = visible > 0 || !query;
