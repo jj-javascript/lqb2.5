@@ -662,6 +662,22 @@ figcaption {
     outline: 2px solid #d49a49;
     outline-offset: 2px; }
 
+.bookshelf-filters {
+  display: flex;
+  align-items: center; }
+
+.bookshelf-category-select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.55em 1em;
+  border: 1px solid #7f571e;
+  border-radius: 4px;
+  min-width: 14rem;
+  background: rgba(255, 255, 255, 0.92); }
+  .bookshelf-category-select:focus {
+    outline: 2px solid #d49a49;
+    outline-offset: 2px; }
+
 .bookshelf-hint {
   font-size: 0.85rem;
   color: rgba(245, 240, 230, 0.75);

@@ -6,6 +6,7 @@
   }
 
   var searchInput = document.getElementById('bookSearch');
+  var categorySelect = document.getElementById('categoryFilter');
   var emptyMsg = document.getElementById('bookshelfEmpty');
   var modalBackdrop = document.querySelector('.book-modal-backdrop');
   var modal = document.querySelector('.book-modal');
@@ -39,16 +40,35 @@
     });
   }
 
+  function parseCategories(card) {
+    var raw = card.getAttribute('data-categories');
+    if (!raw || raw === 'null') {
+      return [];
+    }
+
+    try {
+      var parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      return [];
+    }
+  }
+
   function filterBooks() {
-    if (!searchInput) return;
-    var query = searchInput.value.trim().toLowerCase();
+    var query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    var selectedCategory = categorySelect ? categorySelect.value : '';
     var visible = 0;
     var matches = [];
+    var hasActiveFilter = Boolean(query || selectedCategory);
 
     curatedCards.forEach(function (card) {
       var title = card.getAttribute('data-title') || '';
       var author = card.getAttribute('data-author') || '';
-      var match = !query || title.indexOf(query) !== -1 || author.indexOf(query) !== -1;
+      var categories = parseCategories(card);
+      var matchesSearch = !query || title.indexOf(query) !== -1 || author.indexOf(query) !== -1;
+      var matchesCategory = !selectedCategory || categories.indexOf(selectedCategory) !== -1;
+      var match = matchesSearch && matchesCategory;
+
       card.classList.toggle('hidden', !match);
       if (match) {
         visible += 1;
@@ -63,6 +83,8 @@
         return titleA.localeCompare(titleB);
       });
       layoutCards(matches);
+    } else if (selectedCategory) {
+      layoutCards(matches);
     } else {
       curatedCards.forEach(function (card) {
         card.classList.remove('hidden');
@@ -71,7 +93,7 @@
     }
 
     if (emptyMsg) {
-      emptyMsg.hidden = visible > 0 || !query;
+      emptyMsg.hidden = visible > 0 || !hasActiveFilter;
     }
   }
 
@@ -226,5 +248,9 @@
 
   if (searchInput) {
     searchInput.addEventListener('input', filterBooks);
+  }
+
+  if (categorySelect) {
+    categorySelect.addEventListener('change', filterBooks);
   }
 })();

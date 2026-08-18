@@ -1,0 +1,55 @@
+backend:
+  name: github
+  repo: jj-javascript/lqb2.5
+  branch: master
+
+site_url: https://jj-javascript.github.io
+display_url: https://jj-javascript.github.io/lqb2.5
+
+media_folder: assets/images/books
+public_folder: /assets/images/books
+
+collections:
+  - name: data
+    label: Site Data
+    files:
+      - name: categories
+        label: Categories
+        file: _data/categories.yml
+        fields:
+          - name: categories
+            label: Categories
+            label_singular: Category
+            widget: list
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: slug, label: Slug, widget: string }
+
+  - name: books
+    label: Books
+    label_singular: Book
+    folder: _books
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: author, label: Author, widget: string }
+      - { name: cover, label: Cover Image, widget: image }
+      - { name: cover_width, label: Cover Width, widget: number, default: 200 }
+      - { name: cover_height, label: Cover Height, widget: number, default: 300 }
+      - { name: goodreads, label: Goodreads URL, widget: string, required: false }
+      - { name: highlights, label: Notes/Highlights URL, widget: string, required: false }
+      - { name: review, label: "Is Lawrence's Review?", widget: boolean, default: false }
+      - { name: year_read, label: Year Read, widget: number }
+      - { name: sample, label: Sample (not curated), widget: boolean, default: false }
+      - name: categories
+        label: Categories
+        widget: relation
+        collection: data
+        file: categories
+        multiple: true
+        required: false
+        value_field: "{{categories.*.slug}}"
+        display_fields: ["{{categories.*.name}}"]
+        search_fields: ["{{categories.*.name}}"]
+      - { name: body, label: Review/Summary, widget: markdown }

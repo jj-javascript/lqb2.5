@@ -87,6 +87,26 @@ $shelf-paper: #f5f0e6;
   }
 }
 
+.bookshelf-filters {
+  display: flex;
+  align-items: center;
+}
+
+.bookshelf-category-select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.55em 1em;
+  border: 1px solid darken($shelf-brown, 10%);
+  border-radius: 4px;
+  min-width: 14rem;
+  background: rgba(white, 0.92);
+
+  &:focus {
+    outline: 2px solid lighten($shelf-brown, 15%);
+    outline-offset: 2px;
+  }
+}
+
 .bookshelf-hint {
   font-size: 0.85rem;
   color: rgba(#f5f0e6, 0.75);

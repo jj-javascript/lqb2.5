@@ -9,6 +9,8 @@ highlights: https://docs.google.com/document/d/1b2R-nzyBODuyE068x7dZIOccR71SQ2Wv
 review: true
 year_read: 2019
 sample: false
+categories:
+ - memoir
 ---
 
 **What are the main ideas?** 

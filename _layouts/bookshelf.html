@@ -13,6 +13,17 @@ layout: default
     <div class="bookshelf-controls">
       <label for="bookSearch" class="visually-hidden">Search books</label>
       <input type="search" id="bookSearch" class="bookshelf-search" placeholder="Search books…" autocomplete="off">
+      {% if site.data.categories.categories.size > 0 %}
+        <div class="bookshelf-filters">
+          <label for="categoryFilter" class="visually-hidden">Filter by category</label>
+          <select id="categoryFilter" class="bookshelf-category-select">
+            <option value="">All categories</option>
+            {%- for cat in site.data.categories.categories -%}
+              <option value="{{ cat.slug }}">{{ cat.name }}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+      {% endif %}
       <p class="bookshelf-hint">Click a cover to flip and read the review.</p>
     </div>
   </header>
@@ -31,7 +42,7 @@ layout: default
         </div>
       {% endif %}
     {% endfor %}
-    <p class="bookshelf-empty" id="bookshelfEmpty" hidden>No books match your search.</p>
+    <p class="bookshelf-empty" id="bookshelfEmpty" hidden>No books match your filters.</p>
   </section>
 
   {% assign samples = site.books | where: "sample", true %}

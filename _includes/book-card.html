@@ -1,6 +1,7 @@
 <article class="book-card{% if include.book.sample %} book-card--sample{% endif %}{% unless include.book.content %} book-card--no-review{% endunless %}"
          data-title="{{ include.book.title | downcase }}"
          data-author="{{ include.book.author | downcase }}"
+         data-categories='{{ include.book.categories | jsonify | default: "[]" }}'
          tabindex="0"
          aria-label="Flip to see review for {{ include.book.title }}">
   <div class="book-shelf-tilt">
