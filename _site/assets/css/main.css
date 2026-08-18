@@ -666,7 +666,8 @@ figcaption {
   display: flex;
   align-items: center; }
 
-.bookshelf-category-select {
+.bookshelf-category-select,
+.bookshelf-sort-select {
   font-family: inherit;
   font-size: 1rem;
   padding: 0.55em 1em;
@@ -674,7 +675,8 @@ figcaption {
   border-radius: 4px;
   min-width: 14rem;
   background: rgba(255, 255, 255, 0.92); }
-  .bookshelf-category-select:focus {
+  .bookshelf-category-select:focus,
+  .bookshelf-sort-select:focus {
     outline: 2px solid #d49a49;
     outline-offset: 2px; }
 

@@ -24,6 +24,14 @@ layout: default
           </select>
         </div>
       {% endif %}
+      <div class="bookshelf-filters">
+        <label for="sortSelect" class="visually-hidden">Sort by</label>
+        <select id="sortSelect" class="bookshelf-sort-select">
+          <option value="default">Review order</option>
+          <option value="title">Title (A-Z)</option>
+          <option value="author">Author (A-Z)</option>
+        </select>
+      </div>
       <p class="bookshelf-hint">Click a cover to flip and read the review.</p>
     </div>
   </header>

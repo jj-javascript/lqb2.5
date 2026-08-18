@@ -7,6 +7,7 @@
 
   var searchInput = document.getElementById('bookSearch');
   var categorySelect = document.getElementById('categoryFilter');
+  var sortSelect = document.getElementById('sortSelect');
   var emptyMsg = document.getElementById('bookshelfEmpty');
   var modalBackdrop = document.querySelector('.book-modal-backdrop');
   var modal = document.querySelector('.book-modal');
@@ -54,9 +55,43 @@
     }
   }
 
+  function sortFieldValue(card, sortBy) {
+    return (card.getAttribute('data-' + sortBy) || '').trim();
+  }
+
+  function sortCards(cardList, sortBy) {
+    if (sortBy === 'default') {
+      var visibleCards = {};
+      cardList.forEach(function (card) {
+        visibleCards[card] = true;
+      });
+      return originalOrder.filter(function (card) {
+        return visibleCards[card];
+      });
+    }
+
+    return cardList.slice().sort(function (a, b) {
+      var valA = sortFieldValue(a, sortBy);
+      var valB = sortFieldValue(b, sortBy);
+
+      if (!valA && !valB) {
+        return 0;
+      }
+      if (!valA) {
+        return 1;
+      }
+      if (!valB) {
+        return -1;
+      }
+
+      return valA.localeCompare(valB);
+    });
+  }
+
   function filterBooks() {
     var query = searchInput ? searchInput.value.trim().toLowerCase() : '';
     var selectedCategory = categorySelect ? categorySelect.value : '';
+    var sortBy = sortSelect ? sortSelect.value : 'default';
     var visible = 0;
     var matches = [];
     var hasActiveFilter = Boolean(query || selectedCategory);
@@ -76,21 +111,7 @@
       }
     });
 
-    if (query) {
-      matches.sort(function (a, b) {
-        var titleA = a.getAttribute('data-title') || '';
-        var titleB = b.getAttribute('data-title') || '';
-        return titleA.localeCompare(titleB);
-      });
-      layoutCards(matches);
-    } else if (selectedCategory) {
-      layoutCards(matches);
-    } else {
-      curatedCards.forEach(function (card) {
-        card.classList.remove('hidden');
-      });
-      layoutCards(originalOrder);
-    }
+    layoutCards(sortCards(matches, sortBy));
 
     if (emptyMsg) {
       emptyMsg.hidden = visible > 0 || !hasActiveFilter;
@@ -252,5 +273,9 @@
 
   if (categorySelect) {
     categorySelect.addEventListener('change', filterBooks);
+  }
+
+  if (sortSelect) {
+    sortSelect.addEventListener('change', filterBooks);
   }
 })();
