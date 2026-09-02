@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal text size comparison — bookshelf</title>
+  <style>
+    :root {
+      --shelf-paper: #f5f0e6;
+      --shelf-brown: #A87328;
+      --text-color: #0b0404;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem 1rem 3rem;
+      font-family: "EB Garamond", Garamond, "Times New Roman", serif;
+      background: #7A7668;
+      color: #f5f0e6;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.75rem;
+      margin: 0 0 0.5rem;
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 42rem;
+      margin: 0 auto 2rem;
+      line-height: 1.5;
+      opacity: 0.9;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 120rem;
+      margin: 0 auto;
+    }
+
+    .variant-label {
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .book-modal {
+      width: min(90vw, 400px);
+      height: min(85vh, 600px);
+      margin: 0 auto;
+    }
+
+    .book-modal-content {
+      width: 100%;
+      height: 100%;
+      background-color: var(--shelf-paper);
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+      background-size: 100% 4px, 4px 100%;
+      border: 1px solid #d9d0c0;
+      border-radius: 4px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .book-back-content {
+      height: 100%;
+      padding: 0.6rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .book-back-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      justify-content: center;
+      margin-bottom: 0.45rem;
+      padding-bottom: 0.4rem;
+      padding-top: 0.15rem;
+      border-bottom: 1px solid #d9d0c0;
+      flex-shrink: 0;
+    }
+
+    .book-action {
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.25em 0.55em;
+      border: 1px solid #9a6520;
+      border-radius: 3px;
+      color: white;
+      background: var(--shelf-brown);
+    }
+
+    .book-back-scroll {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.35rem;
+    }
+
+    .book-review-heading {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-align: left;
+      margin: 0 0 0.35rem;
+      color: var(--text-color);
+    }
+
+    .book-review {
+      text-align: left;
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+
+    .book-review p {
+      margin: 0 0 0.4em;
+    }
+
+    .book-review p:last-child {
+      margin-bottom: 0;
+    }
+
+    .size-current .book-review { font-size: 0.9rem; }
+    .size-plus1 .book-review { font-size: 1.0rem; }
+    .size-plus2 .book-review { font-size: 1.1rem; }
+    .size-plus3 .book-review { font-size: 1.2rem; }
+
+    .size-current .book-review strong { font-size: 0.95rem; }
+    .size-plus1 .book-review strong { font-size: 1.05rem; }
+    .size-plus2 .book-review strong { font-size: 1.15rem; }
+    .size-plus3 .book-review strong { font-size: 1.25rem; }
+
+    .note {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <h1>Modal review text — size comparison</h1>
+  <p class="intro">
+    Side-by-side preview of <code>.book-modal-content .book-review</code> at four sizes.
+    Sample content from <em>How We Show Up</em>. Scroll inside each panel to judge readability.
+  </p>
+
+  <div class="grid">
+    <div class="size-current">
+      <p class="variant-label">Current — 0.9rem</p>
+      <div class="book-modal">
+        <div class="book-modal-content">
+          <div class="book-back-content">
+            <div class="book-back-actions">
+              <span class="book-action">Notes</span>
+              <span class="book-action">Goodreads</span>
+            </div>
+            <div class="book-back-scroll">
+              <h4 class="book-review-heading">GoodReads Description</h4>
+              <div class="book-review">
+                <p>An Invitation to Community and Models for Connection</p>
+                <p>After almost every presentation activist and writer Mia Birdsong gives to executives, think tanks, and policy makers, one of those leaders quietly confesses how much they long for the profound community she describes. They have family, friends, and colleagues, yet they still feel like they're standing alone. They're "winning" at the American Dream, but they're lonely, disconnected, and unsatisfied.</p>
+                <p>It seems counterintuitive that living the "good life"—the well-paying job, the nuclear family, the upward mobility—can make us feel isolated and unhappy. But in a divided America, where only a quarter of us know our neighbors and everyone is either a winner or a loser, we've forgotten the key element that helped us make progress in the first community.</p>
+                <p>Through research, interviews, and stories of lived experience, How We Show Up returns us to our inherent connectedness where we find strength, safety, and support in vulnerability and generosity, in asking for help, and in being accountable. Showing up—literally and figuratively—points us toward the promise of our collective vitality and leads us to the liberated well-being we all want.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="size-plus1">
+      <p class="variant-label">+1 increment — 1.0rem</p>
+      <div class="book-modal">
+        <div class="book-modal-content">
+          <div class="book-back-content">
+            <div class="book-back-actions">
+              <span class="book-action">Notes</span>
+              <span class="book-action">Goodreads</span>
+            </div>
+            <div class="book-back-scroll">
+              <h4 class="book-review-heading">GoodReads Description</h4>
+              <div class="book-review">
+                <p>An Invitation to Community and Models for Connection</p>
+                <p>After almost every presentation activist and writer Mia Birdsong gives to executives, think tanks, and policy makers, one of those leaders quietly confesses how much they long for the profound community she describes. They have family, friends, and colleagues, yet they still feel like they're standing alone. They're "winning" at the American Dream, but they're lonely, disconnected, and unsatisfied.</p>
+                <p>It seems counterintuitive that living the "good life"—the well-paying job, the nuclear family, the upward mobility—can make us feel isolated and unhappy. But in a divided America, where only a quarter of us know our neighbors and everyone is either a winner or a loser, we've forgotten the key element that helped us make progress in the first community.</p>
+                <p>Through research, interviews, and stories of lived experience, How We Show Up returns us to our inherent connectedness where we find strength, safety, and support in vulnerability and generosity, in asking for help, and in being accountable. Showing up—literally and figuratively—points us toward the promise of our collective vitality and leads us to the liberated well-being we all want.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="size-plus2">
+      <p class="variant-label">+2 increments — 1.1rem</p>
+      <div class="book-modal">
+        <div class="book-modal-content">
+          <div class="book-back-content">
+            <div class="book-back-actions">
+              <span class="book-action">Notes</span>
+              <span class="book-action">Goodreads</span>
+            </div>
+            <div class="book-back-scroll">
+              <h4 class="book-review-heading">GoodReads Description</h4>
+              <div class="book-review">
+                <p>An Invitation to Community and Models for Connection</p>
+                <p>After almost every presentation activist and writer Mia Birdsong gives to executives, think tanks, and policy makers, one of those leaders quietly confesses how much they long for the profound community she describes. They have family, friends, and colleagues, yet they still feel like they're standing alone. They're "winning" at the American Dream, but they're lonely, disconnected, and unsatisfied.</p>
+                <p>It seems counterintuitive that living the "good life"—the well-paying job, the nuclear family, the upward mobility—can make us feel isolated and unhappy. But in a divided America, where only a quarter of us know our neighbors and everyone is either a winner or a loser, we've forgotten the key element that helped us make progress in the first community.</p>
+                <p>Through research, interviews, and stories of lived experience, How We Show Up returns us to our inherent connectedness where we find strength, safety, and support in vulnerability and generosity, in asking for help, and in being accountable. Showing up—literally and figuratively—points us toward the promise of our collective vitality and leads us to the liberated well-being we all want.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="size-plus3">
+      <p class="variant-label">+3 increments — 1.2rem</p>
+      <div class="book-modal">
+        <div class="book-modal-content">
+          <div class="book-back-content">
+            <div class="book-back-actions">
+              <span class="book-action">Notes</span>
+              <span class="book-action">Goodreads</span>
+            </div>
+            <div class="book-back-scroll">
+              <h4 class="book-review-heading">GoodReads Description</h4>
+              <div class="book-review">
+                <p>An Invitation to Community and Models for Connection</p>
+                <p>After almost every presentation activist and writer Mia Birdsong gives to executives, think tanks, and policy makers, one of those leaders quietly confesses how much they long for the profound community she describes. They have family, friends, and colleagues, yet they still feel like they're standing alone. They're "winning" at the American Dream, but they're lonely, disconnected, and unsatisfied.</p>
+                <p>It seems counterintuitive that living the "good life"—the well-paying job, the nuclear family, the upward mobility—can make us feel isolated and unhappy. But in a divided America, where only a quarter of us know our neighbors and everyone is either a winner or a loser, we've forgotten the key element that helped us make progress in the first community.</p>
+                <p>Through research, interviews, and stories of lived experience, How We Show Up returns us to our inherent connectedness where we find strength, safety, and support in vulnerability and generosity, in asking for help, and in being accountable. Showing up—literally and figuratively—points us toward the promise of our collective vitality and leads us to the liberated well-being we all want.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="note">Temporary comparison page — delete after you pick a size.</p>
+</body>
+</html>

@@ -131,6 +131,39 @@
     return modal && modal.classList.contains('active');
   }
 
+  function updateScrollIndicator(scrollEl) {
+    if (!scrollEl) {
+      return;
+    }
+
+    var hasOverflow = scrollEl.scrollHeight > scrollEl.clientHeight + 1;
+    scrollEl.classList.toggle('has-overflow', hasOverflow);
+
+    if (!hasOverflow) {
+      scrollEl.classList.remove('scrolled-to-bottom');
+      return;
+    }
+
+    var atBottom = scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 4;
+    scrollEl.classList.toggle('scrolled-to-bottom', atBottom);
+  }
+
+  function bindScrollIndicator(container) {
+    var scrollEl = container.querySelector('.book-back-scroll');
+    if (!scrollEl || scrollEl.dataset.scrollBound === 'true') {
+      updateScrollIndicator(scrollEl);
+      return scrollEl;
+    }
+
+    scrollEl.dataset.scrollBound = 'true';
+    scrollEl.addEventListener('scroll', function () {
+      updateScrollIndicator(scrollEl);
+    });
+
+    updateScrollIndicator(scrollEl);
+    return scrollEl;
+  }
+
   function populateModal(card) {
     var backContent = card.querySelector('.book-back-content');
     if (!backContent || !modalContent) {
@@ -139,6 +172,7 @@
 
     modalContent.innerHTML = '';
     modalContent.appendChild(backContent.cloneNode(true));
+    bindScrollIndicator(modalContent);
 
     var title = card.getAttribute('data-title') || 'Book details';
     if (modal) {
@@ -176,6 +210,7 @@
     window.requestAnimationFrame(function () {
       modalBackdrop.classList.add('active');
       modal.classList.add('active');
+      bindScrollIndicator(modalContent);
     });
 
     if (modalClose) {
@@ -278,4 +313,10 @@
   if (sortSelect) {
     sortSelect.addEventListener('change', filterBooks);
   }
+
+  window.addEventListener('resize', function () {
+    if (isModalOpen() && modalContent) {
+      bindScrollIndicator(modalContent);
+    }
+  });
 })();

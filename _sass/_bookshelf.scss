@@ -214,18 +214,12 @@ $shelf-paper: #f5f0e6;
 }
 
 .book-shelf-tilt {
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease;
 }
 
 .book-card:hover .book-shelf-tilt,
 .book-card:focus-within .book-shelf-tilt {
   transform: scale(1.03);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
-}
-
-.book-card.flipped .book-shelf-tilt {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
 }
 
 .book-flip {
@@ -294,6 +288,50 @@ $shelf-paper: #f5f0e6;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   padding-bottom: 0.35rem;
+  position: relative;
+
+  &.has-overflow::after {
+    content: "";
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    height: 2rem;
+    margin-top: -2rem;
+    background: linear-gradient(transparent, $shelf-paper);
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  &.has-overflow.scrolled-to-bottom::after {
+    opacity: 0;
+  }
+
+  &.has-overflow::before {
+    content: "Scroll for more";
+    position: sticky;
+    bottom: 0.35rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    width: fit-content;
+    margin: -1.5rem auto 0;
+    padding: 0.15em 0.55em;
+    font-size: 0.65rem;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    color: darken($muted-text-color, 5%);
+    background: rgba($shelf-paper, 0.92);
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  &.has-overflow.scrolled-to-bottom::before {
+    opacity: 0;
+  }
 }
 
 .book-review-heading {
@@ -429,20 +467,20 @@ $shelf-paper: #f5f0e6;
   }
 
   .book-review-heading {
-    font-size: 0.95rem;
+    font-size: 1.25rem;
   }
 
   .book-review {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     line-height: 1.5;
 
     strong {
-      font-size: 0.95rem;
+      font-size: 1.25rem;
     }
   }
 
   .book-review-empty {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
   }
 
   .book-action {
