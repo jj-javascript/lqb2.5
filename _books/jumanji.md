@@ -1,7 +1,7 @@
 ---
-title: Jumanji
+title: Day at the Lake
 author: Jumongous
-cover: /assets/images/books/Screenshot 2026-08-17 at 11.29.19 PM.png
+cover: /assets/images/books/f236b79e-aa69-4306-b334-02eac6428781.JPG
 cover_width: 200
 cover_height: 300
 goodreads: ''
@@ -13,4 +13,4 @@ categories:
   - fiction
 ---
 
-Best book of all time
+Best day of all time
