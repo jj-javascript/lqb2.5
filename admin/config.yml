@@ -52,4 +52,24 @@ collections:
         value_field: "{{categories.*.slug}}"
         display_fields: ["{{categories.*.name}}"]
         search_fields: ["{{categories.*.name}}"]
+      - name: tags
+        label: Tags (Goodreads shelves)
+        widget: relation
+        collection: tags
+        multiple: true
+        required: false
+        value_field: "{{slug}}"
+        display_fields: ["{{name}}"]
+        search_fields: ["{{name}}"]
+      - { name: cover_source_url, label: Cover Source URL, widget: hidden, required: false }
       - { name: body, label: Review/Summary, widget: markdown }
+
+  - name: tags
+    label: Tags
+    label_singular: Tag
+    folder: _tags
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: slug, label: Slug, widget: string }
