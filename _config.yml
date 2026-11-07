@@ -50,6 +50,6 @@ paginate_path: "/page/:num/"
 
 exclude:
   - harvest.py
-  - import_shelf.py
+  - import_queue.py
   - harvest-report.txt
   - verify-build.sh

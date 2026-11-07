@@ -24,6 +24,22 @@ collections:
             fields:
               - { name: name, label: Name, widget: string }
               - { name: slug, label: Slug, widget: string }
+      - name: goodreads_shelves
+        label: Goodreads Shelves
+        file: _data/goodreads_shelves.yml
+        fields:
+          - name: shelves
+            label: Category shelves to mirror as tags
+            label_singular: Shelf
+            widget: list
+            required: false
+            hint: >-
+              Lawrence's Goodreads category shelves. The importer tags each
+              book with the shelves it belongs to. Leave out special-books
+              and reading-status shelves (read, to-read, currently-reading).
+            fields:
+              - { name: name, label: Display Name, widget: string }
+              - { name: slug, label: Goodreads shelf slug, widget: string }
 
   - name: books
     label: Books
@@ -73,3 +89,19 @@ collections:
     fields:
       - { name: name, label: Name, widget: string }
       - { name: slug, label: Slug, widget: string }
+
+  - name: import_queue
+    label: Import Queue
+    label_singular: Book Import
+    folder: _import_queue
+    create: true
+    identifier_field: goodreads
+    description: >-
+      Paste a Goodreads book link and save. The book is imported
+      automatically within a couple of minutes, and the entry disappears
+      from this queue once done.
+    fields:
+      - name: goodreads
+        label: Goodreads Book URL
+        widget: string
+        hint: "Example: https://www.goodreads.com/book/show/17465709"
