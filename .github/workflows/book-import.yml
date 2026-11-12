@@ -39,7 +39,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add _books _tags _import_queue assets/images/books
+          for p in _books _tags _import_queue assets/images/books; do
+            if [ -e "$p" ]; then git add "$p"; fi
+          done
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
