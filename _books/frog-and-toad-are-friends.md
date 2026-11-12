@@ -8,6 +8,7 @@ goodreads: https://www.goodreads.com/book/show/537296
 review: true
 year_read: 2017
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1626145524i/537296.jpg"
 ---
 
 gift from ross chanowski
