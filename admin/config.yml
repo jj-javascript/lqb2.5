@@ -96,12 +96,20 @@ collections:
     folder: _import_queue
     create: true
     identifier_field: goodreads
+    summary: "{{fields.status}} {{fields.goodreads}}"
     description: >-
       Paste a Goodreads book link and save. The book is imported
       automatically within a couple of minutes, and the entry disappears
-      from this queue once done.
+      from this queue once done. If the book is already in the collection,
+      or the link is not a Goodreads book page, the entry stays here with
+      a Status message explaining why - delete it once read.
     fields:
       - name: goodreads
         label: Goodreads Book URL
         widget: string
         hint: "Example: https://www.goodreads.com/book/show/17465709"
+      - name: status
+        label: Status
+        widget: string
+        required: false
+        hint: Set automatically by the importer. Leave blank when adding a book.

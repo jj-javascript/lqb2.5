@@ -26,9 +26,12 @@ Per queue item:
      (verified Nov 2026; returns up to ~200 books per shelf). Each shelf
      maps to a Sveltia `tag` document keyed by slug, created only if
      missing; existing tag references on a book are never removed.
-  6. On success the queue file is deleted. On failure it is LEFT IN PLACE
-     (with a warning in the run log) so the item can be retried by a
-     re-run; other items still process.
+  6. On successful NEW import the queue file is deleted. If the book is
+     already in the collection, or the URL is not a /book/show/ link, the
+     queue file is KEPT and given a `status` note so the editor sees why
+     in /admin (status-marked items are skipped on later runs). On
+     transient failure it is left in place untouched so the item can be
+     retried by a re-run; other items still process.
 
 Idempotency: re-running with the same queue file, or re-submitting an
 already-imported book, never duplicates books or tag documents. All writes
@@ -198,6 +201,20 @@ def write_doc(fm_text: str, body: str) -> str:
     return f"---\n{fm_text}\n---\n{body}"
 
 
+def mark_queue_item(pending: dict[Path, str], path: Path, status: str) -> None:
+    """Stage a status note onto a queue item instead of deleting it.
+
+    The item stays visible in the /admin Import Queue with the status
+    message, which is how the editor is notified (e.g. that the book is
+    already in the collection). Items carrying a status are skipped on
+    later runs; the editor deletes the entry once read.
+    """
+    _, fm_text, body = split_front_matter(path.read_text(encoding="utf-8"))
+    pending[path] = write_doc(
+        set_scalar(fm_text, "status", yaml_escape(status)), body
+    )
+
+
 # ---------------------------------------------------------------- tags
 
 
@@ -254,33 +271,48 @@ def stage_tag_docs(pending: dict[Path, str], needed: dict[str, str]) -> list[str
 # ---------------------------------------------------------------- main
 
 
-def read_queue() -> list[tuple[Path, str]]:
-    """Return (queue file, goodreads book id) pairs. Bad URLs raise per-item."""
-    items = []
+def read_queue() -> tuple[list[tuple[Path, str]], list[tuple[Path, str]]]:
+    """Split the queue into importable and permanently-invalid items.
+
+    Returns (items, invalid): items are (queue file, goodreads book id);
+    invalid are (queue file, human-readable reason) for URLs that can never
+    import (e.g. not a /book/show/ link) - these get a status note written
+    back rather than being retried forever. Items that already carry a
+    status from a previous run are skipped entirely.
+    """
+    items: list[tuple[Path, str]] = []
+    invalid: list[tuple[Path, str]] = []
     if not QUEUE_DIR.exists():
-        return items
+        return items, invalid
     for path in sorted(QUEUE_DIR.glob("*.md")):
         try:
             fm, _, _ = split_front_matter(path.read_text(encoding="utf-8"))
-            url = str(fm.get("goodreads", ""))
-            m = BOOK_URL_RE.search(url)
-            if not m:
-                raise QueueItemError(
-                    f"no goodreads.com/book/show/<id> URL in {path.name!r}"
-                    f" (got: {url!r})"
-                )
-            items.append((path, m.group(1)))
         except (QueueItemError, yaml.YAMLError) as exc:
             print(f"  ! queue item kept for retry: {path.name}: {exc}")
-    return items
+            continue
+        if fm.get("status"):
+            continue  # already processed and marked on a previous run
+        url = str(fm.get("goodreads", ""))
+        m = BOOK_URL_RE.search(url)
+        if not m:
+            invalid.append(
+                (
+                    path,
+                    "Error: not a Goodreads BOOK link - need"
+                    f" goodreads.com/book/show/<id>, got: {url}",
+                )
+            )
+            continue
+        items.append((path, m.group(1)))
+    return items, invalid
 
 
 def main() -> int:
-    queue = read_queue()
-    if not queue:
+    queue, invalid_items = read_queue()
+    if not queue and not invalid_items:
         print("Import queue is empty. Nothing to do.")
         return 0
-    print(f"{len(queue)} queue item(s)")
+    print(f"{len(queue)} queue item(s), {len(invalid_items)} invalid")
 
     session = make_session()
     index = load_existing_books()
@@ -303,11 +335,17 @@ def main() -> int:
     pending_bin: dict[Path, bytes] = {}
     to_delete: list[Path] = []
     new_books: list[str] = []
+    already_present: list[str] = []
     covers_updated: list[str] = []
     tags_appended: list[str] = []
     warnings: list[str] = []
     needed_tags: dict[str, str] = {}
     seen_keys: set[tuple[str, str]] = set()
+
+    # Un-importable links: notify the editor via a status note on the entry.
+    for path, reason in invalid_items:
+        mark_queue_item(pending, path, reason)
+        print(f"  ! {path.name}: {reason}")
 
     for queue_path, book_id in queue:
         try:
@@ -406,7 +444,13 @@ def main() -> int:
         new_text = write_doc(fm_text, body)
         if new_text != path.read_text(encoding="utf-8"):
             pending[path] = new_text
-        to_delete.append(queue_path)
+        # Notify the editor instead of silently consuming the queue item.
+        mark_queue_item(
+            pending,
+            queue_path,
+            f"Already in collection: {book['title']} by {book['author']}",
+        )
+        already_present.append(book["title"])
 
     created = stage_tag_docs(pending, needed_tags)
 
@@ -425,6 +469,12 @@ def main() -> int:
     print(f"New books imported:   {len(new_books)}")
     for t in new_books:
         print(f"  + {t}")
+    print(f"Already in collection: {len(already_present)}")
+    for t in already_present:
+        print(f"  = {t} (queue entry marked with a status note)")
+    print(f"Invalid queue links:  {len(invalid_items)}")
+    for path, reason in invalid_items:
+        print(f"  ! {path.name}")
     print(f"Covers overwritten:   {len(covers_updated)}")
     for t in covers_updated:
         print(f"  ~ {t}")
