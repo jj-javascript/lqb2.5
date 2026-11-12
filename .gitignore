@@ -4,7 +4,6 @@ _site/
 .gstack/
 _libraryviz/
 _specs/
-harvest.py
 harvest-report.txt
 verify-build.sh
 node_modules/
