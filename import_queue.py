@@ -18,6 +18,10 @@ Per queue item:
   4. New book -> create entry (cover re-encoded to WebP, Goodreads URL,
      body = review pasted into the queue form (review: true) or else the
      public description, tag references from Lawrence's own shelves).
+     A run that imports at least one NEW book also sweeps the rest of the
+     library: every existing book with a goodreads link is re-fetched and
+     its cover re-checked against the page (same first-observation /
+     changed-URL rule), so stale covers elsewhere get caught.
      A pasted review is also attached to an already-present book that has
      none; a book's existing review is never overwritten.
   5. Tags come from Lawrence's OWN Goodreads category shelves, not from
@@ -55,6 +59,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import time
 from pathlib import Path
 
 import yaml  # PyYAML: parsing only; all writes are minimal text edits
@@ -62,6 +67,7 @@ import yaml  # PyYAML: parsing only; all writes are minimal text edits
 from harvest import (
     BOOKS_DIR,
     COVERS_DIR,
+    INTER_PAGE_DELAY,
     CoverDownloadError,
     HarvestError,
     download_cover,
@@ -335,6 +341,41 @@ def book_tags(
     }
 
 
+def cover_sync(
+    session,
+    cover_url: str,
+    fm: dict,
+    fm_text: str,
+    pending_bin: dict[Path, bytes],
+) -> tuple[str, bool]:
+    """Align a book's cover with the current Goodreads image URL.
+
+    First observation (no stored source) records the URL without touching
+    the image; a changed URL downloads the new image and rewrites the
+    cover fields. Returns (updated fm_text, overwritten). Raises
+    CoverDownloadError on download/encode failure (caller warns).
+    """
+    stored_cover = str(fm.get("cover_source_url") or "")
+    if not cover_url or stored_cover == cover_url:
+        return fm_text, False
+    if not stored_cover:
+        # First observation: record the source without overwriting.
+        return (
+            set_scalar(fm_text, "cover_source_url", yaml_escape(cover_url)),
+            False,
+        )
+    raw = download_cover(session, cover_url)
+    webp, width, height = encode_cover_webp(raw)
+    cover_rel = str(fm.get("cover") or "").lstrip("/")
+    if not cover_rel:
+        raise CoverDownloadError("book has no cover path")
+    pending_bin[ROOT / cover_rel] = webp  # overwrite in place
+    fm_text = set_scalar(fm_text, "cover_source_url", yaml_escape(cover_url))
+    fm_text = set_scalar(fm_text, "cover_width", str(width))
+    fm_text = set_scalar(fm_text, "cover_height", str(height))
+    return fm_text, True
+
+
 def sync_unused_tags(shelves: list[dict]) -> tuple[list[str], list[str]]:
     """Sync _tags/ to hold exactly the switched-on shelves no book uses.
 
@@ -473,6 +514,7 @@ def main() -> int:
     tags_appended: list[str] = []
     warnings: list[str] = []
     seen_keys: set[tuple[str, str]] = set()
+    sweep_done: set[tuple[str, str]] = set()  # books cover-checked this run
 
     # Un-importable links: notify the editor via a status note on the entry.
     for path, reason in invalid_items:
@@ -539,31 +581,15 @@ def main() -> int:
         path: Path = existing["path"]
         fm, fm_text, body = existing["fm"], existing["fm_text"], existing["body"]
 
-        stored_cover = str(fm.get("cover_source_url") or "")
-        if book["cover_url"] and stored_cover != book["cover_url"]:
-            if not stored_cover:
-                # First observation: record the source without overwriting.
-                fm_text = set_scalar(
-                    fm_text, "cover_source_url", yaml_escape(book["cover_url"])
-                )
-            else:
-                try:
-                    raw = download_cover(session, book["cover_url"])
-                    webp, width, height = encode_cover_webp(raw)
-                    cover_rel = str(fm.get("cover") or "").lstrip("/")
-                    if not cover_rel:
-                        raise CoverDownloadError("book has no cover path")
-                    pending_bin[ROOT / cover_rel] = webp  # overwrite in place
-                    fm_text = set_scalar(
-                        fm_text, "cover_source_url", yaml_escape(book["cover_url"])
-                    )
-                    fm_text = set_scalar(fm_text, "cover_width", str(width))
-                    fm_text = set_scalar(fm_text, "cover_height", str(height))
-                    covers_updated.append(book["title"])
-                except CoverDownloadError as exc:
-                    warnings.append(
-                        f"{book['title']}: cover update skipped ({exc})"
-                    )
+        try:
+            fm_text, overwritten = cover_sync(
+                session, book["cover_url"], fm, fm_text, pending_bin
+            )
+            if overwritten:
+                covers_updated.append(book["title"])
+        except CoverDownloadError as exc:
+            warnings.append(f"{book['title']}: cover update skipped ({exc})")
+        sweep_done.add(key)
 
         current_tags = fm.get("tags") or []
         if isinstance(current_tags, str):
@@ -594,6 +620,45 @@ def main() -> int:
         )
         already_present.append(book["title"] + status_extra)
 
+    # --- library-wide cover sweep (only when this run imported a NEW book)
+    sweep_checked = 0
+    if new_books:
+        sweepable = [
+            (key, entry)
+            for key, entry in index.items()
+            if key not in sweep_done and str(entry["fm"].get("goodreads", ""))
+        ]
+        print(f"\nLibrary cover sweep: {len(sweepable)} book(s) to check")
+        for i, (key, entry) in enumerate(sweepable):
+            if i:
+                time.sleep(INTER_PAGE_DELAY)
+            path, fm, body = entry["path"], entry["fm"], entry["body"]
+            m = BOOK_URL_RE.search(str(fm.get("goodreads", "")))
+            if not m:
+                warnings.append(f"{path.name}: sweep skipped (no goodreads book id)")
+                continue
+            try:
+                book = fetch_book(session, m.group(1))
+            except QueueItemError as exc:
+                warnings.append(f"{path.name}: sweep skipped ({exc})")
+                continue
+            # Re-read any text already staged this run (e.g. a tag merge).
+            fm_text = pending.get(path, entry["fm_text"])
+            fm_text = split_front_matter(fm_text)[1]
+            try:
+                fm_text, overwritten = cover_sync(
+                    session, book["cover_url"], fm, fm_text, pending_bin
+                )
+            except CoverDownloadError as exc:
+                warnings.append(f"{path.name}: sweep cover skipped ({exc})")
+                continue
+            new_text = write_doc(fm_text, body)
+            if new_text != path.read_text(encoding="utf-8"):
+                pending[path] = new_text
+            sweep_checked += 1
+            if overwritten:
+                covers_updated.append(str(fm.get("title") or path.stem))
+
     # --- flush: all writes land together, only after every item processed
     for path, text in pending.items():
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -618,6 +683,7 @@ def main() -> int:
     print(f"Invalid queue links:  {len(invalid_items)}")
     for path, reason in invalid_items:
         print(f"  ! {path.name}")
+    print(f"Covers swept:         {sweep_checked}")
     print(f"Covers overwritten:   {len(covers_updated)}")
     for t in covers_updated:
         print(f"  ~ {t}")
