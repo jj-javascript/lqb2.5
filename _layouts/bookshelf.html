@@ -63,27 +63,6 @@ layout: default
     {% endfor %}
     <p class="bookshelf-empty" id="bookshelfEmpty" hidden>No books match your filters.</p>
   </section>
-
-  {% assign samples = site.books | where: "sample", true %}
-  {% if samples.size > 0 %}
-    <section class="bookshelf-sample" aria-label="Sample shelf">
-      <h2 class="bookshelf-sample-heading">Also on my shelf — a sample</h2>
-      <p class="bookshelf-sample-note">A glimpse of the full Goodreads shelf. These titles are not part of the curated set above.</p>
-      <div class="bookshelf-unit bookshelf-unit--sample">
-        {% assign last_in_row = books_per_row | minus: 1 %}
-        {% for book in samples %}
-          {% assign mod = forloop.index0 | modulo: books_per_row %}
-          {% if mod == 0 %}
-            <div class="shelf-row">
-          {% endif %}
-            {% include book-card.html book=book %}
-          {% if mod == last_in_row or forloop.last %}
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
 </article>
 
 <div class="book-modal-backdrop" hidden></div>

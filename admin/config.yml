@@ -50,7 +50,6 @@ collections:
       - { name: highlights, label: Notes/Highlights URL, widget: string, required: false }
       - { name: review, label: "Is Lawrence's Review?", widget: boolean, default: false }
       - { name: year_read, label: Year Read, widget: number }
-      - { name: sample, label: Sample (not curated), widget: boolean, default: false }
       - name: tags
         label: Categories
         widget: relation

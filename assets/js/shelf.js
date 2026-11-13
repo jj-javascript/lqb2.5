@@ -14,34 +14,56 @@
   var modalContent = document.querySelector('.book-modal-content');
   var modalClose = document.querySelector('.book-modal-close');
   var cards = Array.prototype.slice.call(document.querySelectorAll('.book-card'));
-  var curatedCards = cards.filter(function (card) {
-    return !card.classList.contains('book-card--sample');
-  });
-  var sampleCards = cards.filter(function (card) {
-    return card.classList.contains('book-card--sample');
-  });
-  var sampleSection = document.querySelector('.bookshelf-sample');
+  var pageEl = document.querySelector('.bookshelf-page');
   var curatedUnit = document.querySelector('.bookshelf-page > .bookshelf-unit');
-  var shelfRows = curatedUnit
-    ? Array.prototype.slice.call(curatedUnit.querySelectorAll('.shelf-row'))
-    : [];
-  var booksPerRow = shelfRows.length
-    ? shelfRows[0].querySelectorAll('.book-card').length || 5
-    : 5;
-  var originalOrder = curatedCards.slice();
+  var originalOrder = cards.slice();
   var activeCard = null;
   var modalTransitionMs = 300;
 
-  function layoutCards(cardList) {
-    cardList.forEach(function (card, index) {
-      var row = shelfRows[Math.floor(index / booksPerRow)];
-      if (row) {
-        row.appendChild(card);
-      }
-    });
+  function measureBooksPerRow() {
+    if (!curatedUnit || !cards.length) {
+      return 5;
+    }
+    var bookWidth = pageEl
+      ? parseFloat(window.getComputedStyle(pageEl).getPropertyValue('--book-w'))
+      : 0;
+    if (!bookWidth) {
+      bookWidth = 170;
+    }
+    var padX = 32;
+    var gap = 16;
+    var row = curatedUnit.querySelector('.shelf-row');
+    if (row) {
+      var style = window.getComputedStyle(row);
+      padX = (parseFloat(style.paddingLeft) || 0) + (parseFloat(style.paddingRight) || 0);
+      gap = parseFloat(style.columnGap) || parseFloat(style.gap) || gap;
+    }
+    var available = curatedUnit.clientWidth - padX;
+    var count = Math.floor((available + gap) / (bookWidth + gap));
+    return Math.max(1, count);
+  }
 
-    shelfRows.forEach(function (row) {
-      row.hidden = !row.querySelector('.book-card:not(.hidden)');
+  function layoutCards(cardList) {
+    if (!curatedUnit) {
+      return;
+    }
+
+    var booksPerRow = measureBooksPerRow();
+    Array.prototype.forEach.call(
+      curatedUnit.querySelectorAll('.shelf-row'),
+      function (row) {
+        row.parentNode.removeChild(row);
+      }
+    );
+
+    var row = null;
+    cardList.forEach(function (card, index) {
+      if (index % booksPerRow === 0) {
+        row = document.createElement('div');
+        row.className = 'shelf-row';
+        curatedUnit.insertBefore(row, emptyMsg || null);
+      }
+      row.appendChild(card);
     });
   }
 
@@ -65,12 +87,8 @@
 
   function sortCards(cardList, sortBy) {
     if (sortBy === 'default') {
-      var visibleCards = {};
-      cardList.forEach(function (card) {
-        visibleCards[card] = true;
-      });
       return originalOrder.filter(function (card) {
-        return visibleCards[card];
+        return cardList.indexOf(card) !== -1;
       });
     }
 
@@ -101,24 +119,14 @@
     return matchesSearch && matchesCategory;
   }
 
-  function hideEmptyRows(root) {
-    if (!root) {
-      return;
-    }
-    Array.prototype.forEach.call(root.querySelectorAll('.shelf-row'), function (row) {
-      row.hidden = !row.querySelector('.book-card:not(.hidden)');
-    });
-  }
-
   function filterBooks() {
     var query = searchInput ? searchInput.value.trim().toLowerCase() : '';
     var selectedCategory = categorySelect ? categorySelect.value : '';
     var sortBy = sortSelect ? sortSelect.value : 'default';
     var matches = [];
-    var sampleVisible = 0;
     var hasActiveFilter = Boolean(query || selectedCategory);
 
-    curatedCards.forEach(function (card) {
+    cards.forEach(function (card) {
       var match = cardMatches(card, query, selectedCategory);
       card.classList.toggle('hidden', !match);
       if (match) {
@@ -126,23 +134,10 @@
       }
     });
 
-    sampleCards.forEach(function (card) {
-      var match = cardMatches(card, query, selectedCategory);
-      card.classList.toggle('hidden', !match);
-      if (match) {
-        sampleVisible += 1;
-      }
-    });
-
     layoutCards(sortCards(matches, sortBy));
-    hideEmptyRows(sampleSection);
-
-    if (sampleSection) {
-      sampleSection.hidden = hasActiveFilter && sampleVisible === 0;
-    }
 
     if (emptyMsg) {
-      emptyMsg.hidden = matches.length + sampleVisible > 0 || !hasActiveFilter;
+      emptyMsg.hidden = matches.length > 0 || !hasActiveFilter;
     }
   }
 
@@ -335,16 +330,26 @@
   }
 
   if (categorySelect) {
-    categorySelect.addEventListener('change', filterBooks);
+    categorySelect.addEventListener('change', function () {
+      filterBooks();
+      if (curatedUnit) {
+        curatedUnit.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   }
 
   if (sortSelect) {
     sortSelect.addEventListener('change', filterBooks);
   }
 
+  var resizeTimer = null;
   window.addEventListener('resize', function () {
     if (isModalOpen() && modalContent) {
       bindScrollIndicator(modalContent);
     }
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(filterBooks, 150);
   });
+
+  filterBooks();
 })();

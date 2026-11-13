@@ -224,9 +224,9 @@ code.highlighter-rouge {
   font-style: normal;
   font-weight: 400;
   font-display: auto;
-  src: url("http://localhost:4000/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.eot");
+  src: url("https://jj-javascript.github.io/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.eot");
   /* IE9 Compat Modes */
-  src: local("EB Garamond Regular"), local("EBGaramond-Regular"), url("http://localhost:4000/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.eot?#iefix") format("embedded-opentype"), url("http://localhost:4000/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.woff2") format("woff2"), url("http://localhost:4000/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.woff") format("woff"), url("http://localhost:4000/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.ttf") format("truetype"), url("http://localhost:4000/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.svg#EBGaramond") format("svg");
+  src: local("EB Garamond Regular"), local("EBGaramond-Regular"), url("https://jj-javascript.github.io/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.eot?#iefix") format("embedded-opentype"), url("https://jj-javascript.github.io/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.woff2") format("woff2"), url("https://jj-javascript.github.io/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.woff") format("woff"), url("https://jj-javascript.github.io/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.ttf") format("truetype"), url("https://jj-javascript.github.io/lqb2.5/assets/fonts/eb-garamond-v9-latin-regular.svg#EBGaramond") format("svg");
   /* Legacy iOS */ }
 body {
   background: #B6D3A5;
@@ -303,7 +303,7 @@ hr {
   width: 152px;
   height: 12px;
   margin: .5em auto 0;
-  background: url(http://localhost:4000/lqb2.5/assets/images/divider.svg) no-repeat top center;
+  background: url(https://jj-javascript.github.io/lqb2.5/assets/images/divider.svg) no-repeat top center;
   margin: 4em 0; }
 
 img {
@@ -329,7 +329,7 @@ figcaption {
   width: 152px;
   height: 12px;
   margin: .5em auto 0;
-  background: url(http://localhost:4000/lqb2.5/assets/images/divider.svg) no-repeat top center; }
+  background: url(https://jj-javascript.github.io/lqb2.5/assets/images/divider.svg) no-repeat top center; }
 
 .home {
   max-width: 24em;
@@ -558,7 +558,7 @@ figcaption {
   width: 152px;
   height: 12px;
   margin: .5em auto 0;
-  background: url(http://localhost:4000/lqb2.5/assets/images/divider.svg) no-repeat top center;
+  background: url(https://jj-javascript.github.io/lqb2.5/assets/images/divider.svg) no-repeat top center;
   margin: 4em auto; }
 
 .footnotes {
@@ -692,17 +692,20 @@ figcaption {
   margin: 0 auto;
   border: 10px solid #A87328;
   overflow: hidden;
+  padding-bottom: calc(var(--shelf-offset, -32px) * -1);
   background-color: #241909;
   box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.35); }
 
 .shelf-row {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   align-items: flex-end;
   padding: 16px 16px 24px;
   gap: 16px; }
+  .shelf-row[hidden] {
+    display: none !important; }
   .shelf-row::after {
     content: "";
     position: absolute;
@@ -720,29 +723,6 @@ figcaption {
   font-style: italic;
   padding: 2rem; }
 
-.bookshelf-sample {
-  margin-top: 3rem; }
-
-.bookshelf-sample-heading {
-  font-size: 1.35em;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  color: #f5f0e6;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); }
-
-.bookshelf-sample-note {
-  text-align: center;
-  color: rgba(245, 240, 230, 0.8);
-  font-size: 0.95em;
-  font-style: italic;
-  margin-bottom: 1.5rem;
-  max-width: 40rem;
-  margin-left: auto;
-  margin-right: auto; }
-
-.bookshelf-unit--sample {
-  opacity: 0.92; }
-
 .book-card {
   width: var(--book-w);
   flex-shrink: 0;
@@ -759,16 +739,11 @@ figcaption {
     z-index: 5; }
 
 .book-shelf-tilt {
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
+  transition: transform 0.25s ease; }
 
 .book-card:hover .book-shelf-tilt,
 .book-card:focus-within .book-shelf-tilt {
-  transform: scale(1.03);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45); }
-
-.book-card.flipped .book-shelf-tilt {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45); }
+  transform: scale(1.03); }
 
 .book-flip {
   perspective: 800px;
@@ -825,7 +800,37 @@ figcaption {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  padding-bottom: 0.35rem; }
+  padding-bottom: 0.35rem;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: #A87328 rgba(168, 115, 40, 0.1); }
+  .book-back-scroll::-webkit-scrollbar {
+    width: 8px; }
+  .book-back-scroll::-webkit-scrollbar-track {
+    background: rgba(168, 115, 40, 0.1);
+    border-radius: 4px; }
+  .book-back-scroll::-webkit-scrollbar-thumb {
+    background: #A87328;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2); }
+  .book-back-scroll.has-overflow::after {
+    content: "\2193";
+    position: absolute;
+    bottom: 0;
+    right: 2px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #A87328;
+    background: #f5f0e6;
+    border-radius: 2px;
+    pointer-events: none;
+    transition: opacity 0.2s ease; }
+  .book-back-scroll.has-overflow.scrolled-to-bottom::after {
+    opacity: 0; }
 
 .book-review-heading {
   font-size: 0.72rem;
@@ -928,15 +933,17 @@ figcaption {
   box-sizing: border-box; }
   .book-modal-content .book-back-content {
     height: 100%; }
+  .book-modal-content .book-back-scroll {
+    padding-right: 4px; }
   .book-modal-content .book-review-heading {
-    font-size: 0.95rem; }
+    font-size: 1.25rem; }
   .book-modal-content .book-review {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     line-height: 1.5; }
     .book-modal-content .book-review strong {
-      font-size: 0.95rem; }
+      font-size: 1.25rem; }
   .book-modal-content .book-review-empty {
-    font-size: 0.9rem; }
+    font-size: 1.2rem; }
   .book-modal-content .book-action {
     font-size: 0.85rem; }
 
@@ -978,15 +985,8 @@ body.bookshelf-modal-open {
     border-width: 6px; }
 
   .shelf-row {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
     padding: 12px 12px 24px;
-    gap: 12px; }
-    .shelf-row .book-card {
-      scroll-snap-align: start; } }
+    gap: 12px; } }
 @media (max-width: 375px) {
   .bookshelf-page--wood {
     --book-w: 120px;

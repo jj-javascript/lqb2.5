@@ -99,7 +99,6 @@ class Book:
     read_at: str = ""
     rating: str = ""
     highlights_url: str = ""
-    sample: bool = False
     source: str = "rss"
     slug: str = ""
     cover_path: str = ""
@@ -133,7 +132,6 @@ class HarvestReport:
     highlight_unmatched: list[str] = field(default_factory=list)
     duplicate_highlights: list[str] = field(default_factory=list)
     core_ids: set[str] = field(default_factory=set)
-    sample_ids: set[str] = field(default_factory=set)
     orphan_titles: list[str] = field(default_factory=list)
     cover_failures: list[str] = field(default_factory=list)
 
@@ -499,8 +497,6 @@ def write_book_md(book: Book) -> None:
     yr = book.year_read()
     if yr:
         fm.append(f"year_read: {yr}")
-    if book.sample:
-        fm.append("sample: true")
     if book.cover_width and book.cover_height:
         fm.append(f"cover_width: {book.cover_width}")
         fm.append(f"cover_height: {book.cover_height}")
@@ -521,7 +517,6 @@ def write_report(report: HarvestReport, total_written: int) -> None:
         f"RSS pages: {report.page_counts}",
         f"Total shelf (RSS): {sum(report.page_counts) and 'see feed'}",
         f"Core books: {len(report.core_ids)}",
-        f"Sample books: {len(report.sample_ids)}",
         f"Total written: {total_written}",
         "",
         "Libraryviz",
@@ -578,19 +573,7 @@ def main() -> int:
 
     core_ids = lv_ids | set(hl_map.keys())
 
-    # Sample band: first 10 RSS page-1 titles not in core
-    page1_url = f"{RSS_BASE}&page=1"
-    resp = session.get(page1_url, timeout=60)
-    resp.raise_for_status()
-    page1_items = [parse_rss_item(x) for x in re.findall(r"<item>.*?</item>", resp.text, re.S)]
-    sample_ids: set[str] = set()
-    for book in page1_items[:10]:
-        if book.book_id not in core_ids:
-            sample_ids.add(book.book_id)
-            book.sample = True
-
     report.core_ids = core_ids
-    report.sample_ids = sample_ids
 
     # Orphans for libraryviz/highlight misses not in feed
     orphan_books = build_orphan_books(session, report)
@@ -598,7 +581,6 @@ def main() -> int:
         if ob.book_id not in feed and ob.book_id not in {b.book_id for b in orphan_books if b.book_id in core_ids}:
             core_ids.add(ob.book_id)
 
-    all_ids = core_ids | sample_ids
     books_to_write: dict[str, Book] = {}
 
     for bid in core_ids:
@@ -609,15 +591,7 @@ def main() -> int:
             if not b:
                 continue
         b.highlights_url = hl_map.get(bid, b.highlights_url)
-        b.sample = False
         books_to_write[bid] = b
-
-    for bid in sample_ids:
-        if bid in feed:
-            b = feed[bid]
-            b.sample = True
-            b.highlights_url = hl_map.get(bid, "")
-            books_to_write[bid] = b
 
     for ob in orphan_books:
         if ob.book_id not in feed:

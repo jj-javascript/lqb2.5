@@ -517,7 +517,6 @@ def main() -> int:
                 f"cover_height: {height or 300}",
                 f"goodreads: {yaml_escape(book['goodreads_url'])}",
                 f"review: {'true' if review_text else 'false'}",
-                "sample: false",
             ]
             if tags:
                 fm_lines.append("tags:")

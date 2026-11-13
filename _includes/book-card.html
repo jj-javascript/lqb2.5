@@ -16,7 +16,7 @@
     {% assign filter_json = filter_json | append: '"' | append: slug | append: '"' %}
   {% endif %}
 {% endfor %}
-<article class="book-card{% if include.book.sample %} book-card--sample{% endif %}{% unless include.book.content %} book-card--no-review{% endunless %}"
+<article class="book-card{% unless include.book.content %} book-card--no-review{% endunless %}"
          data-title="{{ include.book.title | downcase }}"
          data-author="{{ include.book.author | downcase }}"
          data-categories='[{{ filter_json }}]'
