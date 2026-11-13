@@ -333,7 +333,7 @@
     categorySelect.addEventListener('change', function () {
       filterBooks();
       if (curatedUnit) {
-        curatedUnit.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        curatedUnit.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
     });
   }
