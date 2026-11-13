@@ -44,6 +44,10 @@ plugins:
 collections:
   books:
     output: false
+  # Goodreads shelves mirrored as tags. `site.tags` is Jekyll's post-tag
+  # index, so these documents are read via site.collections, not site.tags.
+  tags:
+    output: false
 
 paginate: 1
 paginate_path: "/page/:num/"

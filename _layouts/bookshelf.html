@@ -13,17 +13,35 @@ layout: default
     <div class="bookshelf-controls">
       <label for="bookSearch" class="visually-hidden">Search books</label>
       <input type="search" id="bookSearch" class="bookshelf-search" placeholder="Search books…" autocomplete="off">
-      {% if site.data.categories.categories.size > 0 %}
-        <div class="bookshelf-filters">
-          <label for="categoryFilter" class="visually-hidden">Filter by category</label>
-          <select id="categoryFilter" class="bookshelf-category-select">
-            <option value="">All categories</option>
-            {%- for cat in site.data.categories.categories -%}
-              <option value="{{ cat.slug }}">{{ cat.name }}</option>
-            {%- endfor -%}
-          </select>
-        </div>
-      {% endif %}
+      {% assign category_slugs = site.data.categories.categories | map: "slug" | join: "|" | prepend: "|" | append: "|" %}
+      {% assign used_slugs = "|" %}
+      {% for book in site.books %}
+        {% for tag in book.tags %}
+          {% assign needle = "|" | append: tag | append: "|" %}
+          {% unless used_slugs contains needle %}
+            {% assign used_slugs = used_slugs | append: tag | append: "|" %}
+          {% endunless %}
+        {% endfor %}
+      {% endfor %}
+      {% assign tag_collection = site.collections | where: "label", "tags" | first %}
+      {% assign shelf_categories = tag_collection.docs | sort: "name" %}
+      <div class="bookshelf-filters">
+        <label for="categoryFilter" class="visually-hidden">Filter by category</label>
+        <select id="categoryFilter" class="bookshelf-category-select">
+          <option value="">All categories</option>
+          {%- for cat in site.data.categories.categories -%}
+            <option value="{{ cat.slug }}">{{ cat.name }}</option>
+          {%- endfor -%}
+          {%- for cat in shelf_categories -%}
+            {% assign needle = "|" | append: cat.data.slug | append: "|" %}
+            {% if used_slugs contains needle %}
+              {% unless category_slugs contains needle %}
+                <option value="{{ cat.data.slug }}">{{ cat.data.name }}</option>
+              {% endunless %}
+            {% endif %}
+          {%- endfor -%}
+        </select>
+      </div>
       <div class="bookshelf-filters">
         <label for="sortSelect" class="visually-hidden">Sort by</label>
         <select id="sortSelect" class="bookshelf-sort-select">

@@ -1,7 +1,24 @@
+{% assign filter_slugs = "|" %}
+{% for slug in include.book.categories %}
+  {% assign filter_slugs = filter_slugs | append: slug | append: "|" %}
+{% endfor %}
+{% for slug in include.book.tags %}
+  {% assign needle = "|" | append: slug | append: "|" %}
+  {% unless filter_slugs contains needle %}
+    {% assign filter_slugs = filter_slugs | append: slug | append: "|" %}
+  {% endunless %}
+{% endfor %}
+{% assign filter_json = "" %}
+{% for slug in filter_slugs | split: "|" %}
+  {% if slug != "" %}
+    {% unless filter_json == "" %}{% assign filter_json = filter_json | append: "," %}{% endunless %}
+    {% assign filter_json = filter_json | append: '"' | append: slug | append: '"' %}
+  {% endif %}
+{% endfor %}
 <article class="book-card{% if include.book.sample %} book-card--sample{% endif %}{% unless include.book.content %} book-card--no-review{% endunless %}"
          data-title="{{ include.book.title | downcase }}"
          data-author="{{ include.book.author | downcase }}"
-         data-categories='{{ include.book.categories | jsonify | default: "[]" }}'
+         data-categories='[{{ filter_json }}]'
          tabindex="0"
          aria-label="Flip to see review for {{ include.book.title }}">
   <div class="book-shelf-tilt">
