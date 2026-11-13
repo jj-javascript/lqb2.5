@@ -147,3 +147,243 @@ shelves:
   - name: Fatherhood
     slug: fatherhood
     tag: true
+  - name: Addiction
+    slug: addiction
+    tag: true
+  - name: Agriculture Urban Ag
+    slug: agriculture-urban-ag
+    tag: true
+  - name: All
+    slug: all
+    tag: true
+  - name: Aloneness Solitude
+    slug: aloneness-solitude
+    tag: true
+  - name: Anger
+    slug: anger
+    tag: true
+  - name: Art
+    slug: art
+    tag: true
+  - name: Astrology
+    slug: astrology
+    tag: true
+  - name: Bound
+    slug: bound
+    tag: true
+  - name: Boundaries
+    slug: boundaries
+    tag: true
+  - name: Restorative Justice
+    slug: restorative-justice
+    tag: true
+  - name: Rj Tj Ca
+    slug: rj-tj-ca
+    tag: true
+  - name: Sci
+    slug: sci
+    tag: true
+  - name: Sexual Trauma
+    slug: sexual-trauma
+    tag: true
+  - name: Shame
+    slug: shame
+    tag: true
+  - name: Shelved Forever
+    slug: shelved-forever
+    tag: true
+  - name: Social Commentary
+    slug: social-commentary
+    tag: true
+  - name: Somatics
+    slug: somatics
+    tag: true
+  - name: Started
+    slug: started
+    tag: true
+  - name: Stoicism
+    slug: stoicism
+    tag: true
+  - name: Story
+    slug: story
+    tag: true
+  - name: Strategy
+    slug: strategy
+    tag: true
+  - name: Suicide
+    slug: suicide
+    tag: true
+  - name: Tarot
+    slug: tarot
+    tag: true
+  - name: Technology
+    slug: technology
+    tag: true
+  - name: Trust
+    slug: trust
+    tag: true
+  - name: Uncling
+    slug: uncling
+    tag: true
+  - name: Weaning
+    slug: weaning
+    tag: true
+  - name: Writing
+    slug: writing
+    tag: true
+  - name: Yoga
+    slug: yoga
+    tag: true
+  - name: Zen
+    slug: zen
+    tag: true
+  - name: Care
+    slug: care
+    tag: true
+  - name: Class
+    slug: class
+    tag: true
+  - name: Comms
+    slug: comms
+    tag: true
+  - name: Community
+    slug: community
+    tag: true
+  - name: Conflict
+    slug: conflict
+    tag: true
+  - name: Consciousness
+    slug: consciousness
+    tag: true
+  - name: Consulting
+    slug: consulting
+    tag: true
+  - name: Contemplation
+    slug: contemplation
+    tag: true
+  - name: Death
+    slug: death
+    tag: true
+  - name: Depression
+    slug: depression
+    tag: true
+  - name: Disability Justice
+    slug: disability-justice
+    tag: true
+  - name: Do You Believe In Magic
+    slug: do-you-believe-in-magic
+    tag: true
+  - name: Dreams
+    slug: dreams
+    tag: true
+  - name: Emotions
+    slug: emotions
+    tag: true
+  - name: Empire And The State
+    slug: empire-and-the-state
+    tag: true
+  - name: Evolutionary Leadership
+    slug: evolutionary-leadership
+    tag: true
+  - name: Fac
+    slug: fac
+    tag: true
+  - name: Food
+    slug: food
+    tag: true
+  - name: Footlong Bookshelf
+    slug: footlong-bookshelf
+    tag: true
+  - name: Gullah Geechee
+    slug: gullah-geechee
+    tag: true
+  - name: Herbalism
+    slug: herbalism
+    tag: true
+  - name: Imagination
+    slug: imagination
+    tag: true
+  - name: Israel
+    slug: israel
+    tag: true
+  - name: Judaism
+    slug: judaism
+    tag: true
+  - name: Kids
+    slug: kids
+    tag: true
+  - name: Kids Books
+    slug: kids-books
+    tag: true
+  - name: Leadership
+    slug: leadership
+    tag: true
+  - name: Liberation
+    slug: liberation
+    tag: true
+  - name: Listening
+    slug: listening
+    tag: true
+  - name: Magic
+    slug: magic
+    tag: true
+  - name: Magical Realism
+    slug: magical-realism
+    tag: true
+  - name: Marketing
+    slug: marketing
+    tag: true
+  - name: Memoir
+    slug: memoir
+    tag: true
+  - name: Money
+    slug: money
+    tag: true
+  - name: Narcissism
+    slug: narcissism
+    tag: true
+  - name: Networks
+    slug: networks
+    tag: true
+  - name: New Economy
+    slug: new-economy
+    tag: true
+  - name: Organizational Development
+    slug: organizational-development
+    tag: true
+  - name: Outdoors
+    slug: outdoors
+    tag: true
+  - name: Overwhelm
+    slug: overwhelm
+    tag: true
+  - name: Paused
+    slug: paused
+    tag: true
+  - name: Personal Development
+    slug: personal-development
+    tag: true
+  - name: Philosophy
+    slug: philosophy
+    tag: true
+  - name: Power
+    slug: power
+    tag: true
+  - name: Prayer
+    slug: prayer
+    tag: true
+  - name: Pregnancy
+    slug: pregnancy
+    tag: true
+  - name: Queer
+    slug: queer
+    tag: true
+  - name: Reed S Reads
+    slug: reed-s-reads
+    tag: true
+  - name: Rereads
+    slug: rereads
+    tag: true
+  - name: Rest And Dreaming
+    slug: rest-and-dreaming
+    tag: true
