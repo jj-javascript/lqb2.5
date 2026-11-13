@@ -17,5 +17,5 @@ review: |-
   How would I describe the book to a friend?
 
   it took me a second to get used to dean's direct, low-fluff writing style but once i did, phew! dean weaves together little vignettes/stories and philosophy in a simple, clear, and masterful way. the brief stories help frame what the theory he's about to get into is about. and each section of theory has practices you can try on immediately (if you dare/have the courage!). the book is full of insightful questions and also little mini-essays (in gray boxes) that are like sweet little seeds that can be pulled out and used on their own or shared with others. i think this book and my notes from it will get a lot of air time over the next few months or year.
-status: ''
+status: "Already in collection: Love in a F*cked-Up World: How to Build Relationships, Hook Up, and Raise Hell Together by Dean Spade - your review was added"
 ---
