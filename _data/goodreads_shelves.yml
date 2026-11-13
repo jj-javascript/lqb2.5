@@ -11,4 +11,139 @@
 #   shelves:
 #     - name: Parenting
 #       slug: parenting
-shelves: []
+shelves:
+  - name: All Black Everything
+    slug: all-black-everything
+    tag: true
+  - name: Spirituality
+    slug: spirituality
+    tag: true
+  - name: Movement
+    slug: movement
+    tag: true
+  - name: Race
+    slug: race
+    tag: true
+  - name: Self Mastery
+    slug: self-mastery
+    tag: true
+  - name: All Queer Everything
+    slug: all-queer-everything
+    tag: true
+  - name: Healing
+    slug: healing
+    tag: true
+  - name: Buddhism
+    slug: buddhism
+    tag: true
+  - name: Scifi
+    slug: scifi
+    tag: true
+  - name: Poetry
+    slug: poetry
+    tag: true
+  - name: Business Management
+    slug: business-management
+    tag: true
+  - name: Futurism
+    slug: futurism
+    tag: true
+  - name: Mysticism
+    slug: mysticism
+    tag: true
+  - name: Indigenous Wisdom
+    slug: indigenous-wisdom
+    tag: true
+  - name: Children S Books
+    slug: children-s-books
+    tag: true
+  - name: Reed Reads
+    slug: reed-reads
+    tag: true
+  - name: Men Patriarchy
+    slug: men-patriarchy
+    tag: true
+  - name: Love
+    slug: love
+    tag: true
+  - name: On Loan
+    slug: on-loan
+    tag: true
+  - name: Trauma
+    slug: trauma
+    tag: true
+  - name: Christianity
+    slug: christianity
+    tag: true
+  - name: Medicine
+    slug: medicine
+    tag: true
+  - name: Facilitation
+    slug: facilitation
+    tag: true
+  - name: Feminism
+    slug: feminism
+    tag: true
+  - name: Systems Networks
+    slug: systems-networks
+    tag: true
+  - name: History
+    slug: history
+    tag: true
+  - name: Urban Planning
+    slug: urban-planning
+    tag: true
+  - name: 2022 Must Read
+    slug: 2022-must-read
+    tag: true
+  - name: Parenting
+    slug: parenting
+    tag: true
+  - name: Burnout
+    slug: burnout
+    tag: true
+  - name: Revolutionary Uncling
+    slug: revolutionary-uncling
+    tag: true
+  - name: Coaching
+    slug: coaching
+    tag: true
+  - name: Economy
+    slug: economy
+    tag: true
+  - name: Fiction
+    slug: fiction
+    tag: true
+  - name: Nature Environment
+    slug: nature-environment
+    tag: true
+  - name: Training Prereads
+    slug: training-prereads
+    tag: true
+  - name: Education
+    slug: education
+    tag: true
+  - name: Favorite
+    slug: favorite
+    tag: true
+  - name: Sex
+    slug: sex
+    tag: true
+  - name: Transformative Justice
+    slug: transformative-justice
+    tag: true
+  - name: Meditation
+    slug: meditation
+    tag: true
+  - name: Abolition
+    slug: abolition
+    tag: true
+  - name: Fantasy
+    slug: fantasy
+    tag: true
+  - name: Grief And Mourning
+    slug: grief-and-mourning
+    tag: true
+  - name: Fatherhood
+    slug: fatherhood
+    tag: true
