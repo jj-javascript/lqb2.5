@@ -23,25 +23,27 @@ layout: default
         {% endfor %}
       {% endfor %}
       {% assign shelves_sorted = site.data.goodreads_shelves.shelves | sort: "name" %}
-      <div class="bookshelf-filters">
-        <label for="categoryFilter" class="visually-hidden">Filter by category</label>
-        <select id="categoryFilter" class="bookshelf-category-select">
-          <option value="">All categories</option>
-          {%- for shelf in shelves_sorted -%}
-            {% assign needle = "|" | append: shelf.slug | append: "|" %}
-            {% if shelf.tag != false and used_slugs contains needle %}
-              <option value="{{ shelf.slug }}">{{ shelf.name }}</option>
-            {% endif %}
-          {%- endfor -%}
-        </select>
-      </div>
-      <div class="bookshelf-filters">
-        <label for="sortSelect" class="visually-hidden">Sort by</label>
-        <select id="sortSelect" class="bookshelf-sort-select">
-          <option value="default">Review order</option>
-          <option value="title">Title (A-Z)</option>
-          <option value="author">Author (A-Z)</option>
-        </select>
+      <div class="bookshelf-filter-row">
+        <div class="bookshelf-filters">
+          <label for="categoryFilter" class="visually-hidden">Filter by category</label>
+          <select id="categoryFilter" class="bookshelf-category-select">
+            <option value="">All categories</option>
+            {%- for shelf in shelves_sorted -%}
+              {% assign needle = "|" | append: shelf.slug | append: "|" %}
+              {% if shelf.tag != false and used_slugs contains needle %}
+                <option value="{{ shelf.slug }}">{{ shelf.name }}</option>
+              {% endif %}
+            {%- endfor -%}
+          </select>
+        </div>
+        <div class="bookshelf-filters">
+          <label for="sortSelect" class="visually-hidden">Sort by</label>
+          <select id="sortSelect" class="bookshelf-sort-select">
+            <option value="default">Review order</option>
+            <option value="title">Title (A-Z)</option>
+            <option value="author">Author (A-Z)</option>
+          </select>
+        </div>
       </div>
       <p class="bookshelf-hint">Click a cover to flip and read the review.</p>
     </div>
