@@ -9,6 +9,16 @@ highlights: https://docs.google.com/document/d/1wAqgSDRjf6OgqVQUCycDbTXh_1Jwiada
 review: false
 year_read: 2018
 sample: false
+tags:
+  - all-black-everything
+  - all-queer-everything
+  - economy
+  - movement
+  - new-economy
+  - race
+  - self-mastery
+  - systems-networks
+  - urban-planning
 ---
 
 Mississippi, the poorest state in the U.S. with the highest percentage of Black people, a history of vicious racial terror and concurrent Black resistance is the backdrop and context for the drama captured in the collection of essays that is Jackson The Struggle for Economic Democracy and Self-Determination in Jackson Mississippi.

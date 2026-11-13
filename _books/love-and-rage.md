@@ -9,6 +9,11 @@ highlights: https://docs.google.com/document/d/1eq45iy3pJZ1QJA2CtQnscie01xn29fyo
 review: true
 year_read: 2020
 sample: false
+tags:
+  - all-black-everything
+  - all-queer-everything
+  - anger
+  - buddhism
 ---
 
 love and rage book review

@@ -8,6 +8,10 @@ goodreads: https://www.goodreads.com/book/show/550165
 review: true
 year_read: 2017
 sample: false
+tags:
+  - futurism
+  - new-economy
+  - urban-planning
 ---
 
 recommended by jonathan krones. 

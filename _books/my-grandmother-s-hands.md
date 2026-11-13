@@ -11,6 +11,12 @@ year_read: 2019
 sample: false
 categories:
  - memoir
+tags:
+  - all-black-everything
+  - healing
+  - movement
+  - race
+  - somatics
 ---
 
 **What are the main ideas?** 

@@ -9,6 +9,10 @@ highlights: https://docs.google.com/document/d/1JdNqWclvVZF-ANiL9dnQs6wZbcOBu_lI
 review: true
 year_read: 2018
 sample: false
+tags:
+  - favorite
+  - on-loan
+  - reed-reads
 ---
 
 8 august 2018

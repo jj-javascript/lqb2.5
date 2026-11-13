@@ -9,6 +9,8 @@ highlights: https://docs.google.com/document/d/15CN2laXWaALtsdJCXXq0Az1R0gFmZxS8
 review: true
 year_read: 2018
 sample: false
+tags:
+  - indigenous-wisdom
 ---
 
 **What are the main ideas?** 

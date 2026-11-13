@@ -8,6 +8,8 @@ goodreads: https://www.goodreads.com/book/show/170967
 review: true
 year_read: 2017
 sample: false
+tags:
+  - race
 ---
 
 i got this as a coffeetable book some time ago and slowly read it around the time i started to loc my hair again. the book starts out with an essay about the global histories of (dread)locks in different contexts. from spiritual leaders in south east asia to africa to the caribbean, most locks have deep cultural, historic importance to the people who wear them. the essay was fascinating, for sure. most of the book, though, is 2-page spreads: one page being a full page portrait and the other being a statement from the subject of the image. it was really eye-opening to see how so many different people from around the world and different traditions think about their locked hair. 

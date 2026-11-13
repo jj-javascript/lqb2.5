@@ -9,6 +9,10 @@ highlights: https://docs.google.com/document/d/1TxGxLet1kBh7FzJYN-0oJpsFffpsfmFn
 review: true
 year_read: 2019
 sample: false
+tags:
+  - all-black-everything
+  - healing
+  - history
 ---
 
 What are the main ideas?

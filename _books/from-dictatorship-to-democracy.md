@@ -9,6 +9,8 @@ highlights: https://docs.google.com/document/d/1ibNed-GrWYiLF0HaZ95GW1pSiQwaNr2Z
 review: true
 year_read: 2017
 sample: false
+tags:
+  - movement
 ---
 
 standard part of the sharp works. this is a short, straightforward guide to the thinking, strategy, and tactics of how to overthrow a dictatorship. contrary to its name, however, it is also a guide for how to slow the growth of a dictatorship in progress or prevent dictatorships in the first place. consistent in its logic and also (sideways) addresses how to handle violent actions in a nonviolent struggle. a valuable read in the modern political era where democracy as an ideology seems to be crumbling from many angles.

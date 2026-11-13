@@ -9,6 +9,9 @@ highlights: https://docs.google.com/document/d/1blUCqC8qeo5NS-kvrfBssPrC5a3btahF
 review: false
 year_read: 2019
 sample: false
+tags:
+  - medicine
+  - mysticism
 ---
 
 This adventure in science and imagination, which the Medical Tribune said might herald "a Copernican revolution for the life sciences," leads the reader through unexplored jungles and uncharted aspects of mind to the heart of knowledge.In a first-person narrative of scientific discovery that opens new perspectives on biology, anthropology, and the limits of rationalism, The Cosmic Serpent reveals how startlingly different the world around us appears when we open our minds to it.

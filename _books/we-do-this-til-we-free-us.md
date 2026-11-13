@@ -9,6 +9,10 @@ highlights: https://docs.google.com/document/d/1o2wnoQcacVgS2LuHJUdLSVvTj_Y8IaQZ
 review: true
 year_read: 2021
 sample: false
+tags:
+  - all-black-everything
+  - movement
+  - transformative-justice
 ---
 
 What are the main ideas? 

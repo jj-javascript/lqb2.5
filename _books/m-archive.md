@@ -9,6 +9,8 @@ highlights: https://docs.google.com/document/d/1Zp_8aM-i-ZcF1rpyIVHZXqtn-WZVEI3c
 review: false
 year_read: 2019
 sample: false
+tags:
+  - poetry
 ---
 
 Following the innovative collection Spill, Alexis Pauline Gumbs's M Archive—the second book in a planned experimental triptych—is a series of poetic artifacts that speculatively documents the persistence of Black life following a worldwide cataclysm. Engaging with the work of the foundational Black feminist theorist M. Jacqui Alexander, and following the trajectory of Gumbs's acclaimed visionary fiction short story “Evidence,” M Archive is told from the perspective of a future researcher who uncovers evidence of the conditions of late capitalism, antiblackness, and environmental crisis while examining possibilities of being that exceed the human. By exploring how Black feminist theory is already after the end of the world, Gumbs reinscribes the possibilities and potentials of scholarship while demonstrating the impossibility of demarcating the lines between art, science, spirit, scholarship, and politics.

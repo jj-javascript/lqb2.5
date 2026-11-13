@@ -1,0 +1,4 @@
+---
+name: Buddhism
+slug: buddhism
+---

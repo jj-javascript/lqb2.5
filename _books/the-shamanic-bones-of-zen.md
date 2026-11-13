@@ -8,6 +8,8 @@ goodreads: https://www.goodreads.com/book/show/57997878
 review: false
 year_read: 2026
 sample: true
+tags:
+  - buddhism
 ---
 
 Conceived at the crossroads of Buddhism and indigenous earth-based practice, The Shamanic Bones of Zen explores the deep human traditions of transformation that are made possible by meditation, ceremony, ritual, dreams, and spiritual connection to one’s ancestry.

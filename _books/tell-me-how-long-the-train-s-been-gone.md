@@ -9,6 +9,9 @@ highlights: https://github.com/spewil/bookclub
 review: true
 year_read: 2020
 sample: false
+tags:
+  - all-black-everything
+  - fiction
 ---
 
 literally so impressed. the book has unbelievable time travel that feels just like life (traumatic blurriness and all). flowing tumbling sections of memory swirled right in with a primary storyline in way that just is glorious. and the beautifully, terribly integrated commentary on race, gender, class, and amerikkka is ::chef kiss::

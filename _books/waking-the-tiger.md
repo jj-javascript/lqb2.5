@@ -8,6 +8,9 @@ goodreads: https://www.goodreads.com/book/show/384924
 review: true
 year_read: 2026
 sample: true
+tags:
+  - healing
+  - trauma
 ---
 
 What are the main ideas?

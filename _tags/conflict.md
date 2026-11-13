@@ -1,0 +1,4 @@
+---
+name: Conflict
+slug: conflict
+---

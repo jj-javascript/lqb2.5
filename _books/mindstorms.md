@@ -8,6 +8,9 @@ goodreads: https://www.goodreads.com/book/show/703532
 review: true
 year_read: 2017
 sample: false
+tags:
+  - education
+  - reed-reads
 ---
 
 ht sharon de la cruz. note: i read this as a part of the princeton studiolab & p5js interactive book club: https://diversity.p5js.org/aboutserie...

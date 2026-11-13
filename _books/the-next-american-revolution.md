@@ -9,6 +9,8 @@ highlights: https://docs.google.com/document/d/1aHqtvTO0u1Z1QW0SaxKvUUuQaU31Lpw2
 review: true
 year_read: 2020
 sample: false
+tags:
+  - movement
 ---
 
 ht aisha shillingford circa 2017

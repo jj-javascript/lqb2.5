@@ -8,6 +8,9 @@ goodreads: https://www.goodreads.com/book/show/3828902
 review: false
 year_read: 2026
 sample: true
+tags:
+  - 2022-must-read
+  - systems-networks
 ---
 
 Meadows’ Thinking in Systems, is a concise and crucial book offering insight for problem solving on scales ranging from the personal to the global. Edited by the Sustainability Institute’s Diana Wright, this essential primer brings systems thinking out of the realm of computers and equations and into the tangible world, showing readers how to develop the systems-thinking skills that thought leaders across the globe consider critical for 21st-century life.

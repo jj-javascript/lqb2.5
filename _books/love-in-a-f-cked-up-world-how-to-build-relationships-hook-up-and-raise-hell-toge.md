@@ -8,6 +8,11 @@ goodreads: "https://www.goodreads.com/book/show/212924187"
 review: true
 sample: false
 cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1719002769i/212924187.jpg"
+tags:
+  - love
+  - movement
+  - queer
+  - self-mastery
 ---
 
 What are the main ideas?

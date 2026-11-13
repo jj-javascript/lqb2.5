@@ -9,6 +9,10 @@ highlights: https://docs.google.com/document/d/1X_no_DlAry3-qYBdXWASFDDYTR2aQA3T
 review: true
 year_read: 2018
 sample: false
+tags:
+  - evolutionary-leadership
+  - nature-environment
+  - systems-networks
 ---
 
 can't believe it took me this long to get to this and finish it. the size of the book definitely made it weird to carry around (page size was too big).

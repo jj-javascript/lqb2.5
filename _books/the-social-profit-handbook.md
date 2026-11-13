@@ -9,6 +9,9 @@ highlights: https://docs.google.com/document/d/1CS5Tc5JeteW7227vvNmMkdkw0o_S6p1q
 review: true
 year_read: 2021
 sample: false
+tags:
+  - business-management
+  - consulting
 ---
 
 What are the main ideas? 

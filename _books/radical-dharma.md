@@ -9,6 +9,10 @@ highlights: https://docs.google.com/document/d/11726IOFrbI2m9PSaLiyCS6VYVPRtGI_8
 review: true
 year_read: 2017
 sample: false
+tags:
+  - buddhism
+  - reed-reads
+  - spirituality
 ---
 
 ht jax

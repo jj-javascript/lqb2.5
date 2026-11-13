@@ -1,0 +1,4 @@
+---
+name: Favorite
+slug: favorite
+---

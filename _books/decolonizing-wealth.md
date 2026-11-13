@@ -9,6 +9,13 @@ highlights: https://docs.google.com/document/d/1fJXo7Vft9Q27ZxhLpYKi34LjloN8uv3j
 review: false
 year_read: 2019
 sample: false
+tags:
+  - economy
+  - healing
+  - indigenous-wisdom
+  - medicine
+  - movement
+  - on-loan
 ---
 
 Decolonizing Wealth is a provocative analysis of the dysfunctional colonial dynamics at play in philanthropy and finance. Award-winning philanthropy executive Edgar Villanueva draws from the traditions from the Native way to prescribe the medicine for restoring balance and healing our divides.

@@ -9,6 +9,9 @@ highlights: https://docs.google.com/document/d/1mJI3mgNnbBCGcEwVfvY7CyqvskfUe8yG
 review: false
 year_read: 2019
 sample: false
+tags:
+  - comms
+  - conflict
 ---
 
 The 10th-anniversary edition of the New York Times business bestseller-now updated with "Answers to Ten Questions People Ask"  

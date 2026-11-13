@@ -9,6 +9,11 @@ highlights: https://docs.google.com/document/d/1bp7DFUMSl09ZhPL5A4RaUVDTXLP81NUY
 review: true
 year_read: 2022
 sample: false
+tags:
+  - 2022-must-read
+  - coaching
+  - healing
+  - trauma
 ---
 
 What are the main ideas? 

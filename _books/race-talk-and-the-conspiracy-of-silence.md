@@ -9,6 +9,9 @@ highlights: https://docs.google.com/document/d/1YA_1m7G0MEq69vgHo_8AzLYD8Meb1Pwq
 review: true
 year_read: 2020
 sample: false
+tags:
+  - facilitation
+  - race
 ---
 
 What are the main ideas? 

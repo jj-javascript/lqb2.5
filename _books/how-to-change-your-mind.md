@@ -9,6 +9,10 @@ highlights: https://docs.google.com/document/d/1lfwPP5pNCrIhgM9tU7turLta0ObTBWYQ
 review: true
 year_read: 2019
 sample: false
+tags:
+  - healing
+  - medicine
+  - mysticism
 ---
 
 suggestion from g during a coaching session.

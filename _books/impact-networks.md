@@ -9,6 +9,8 @@ highlights: https://docs.google.com/document/d/1DM3OLi8twcjdwDHDGkN80sCLQYU-CGNJ
 review: false
 year_read: 2021
 sample: false
+tags:
+  - footlong-bookshelf
 ---
 
 This practical guide shows how to facilitate collaboration among diverse individuals and organizations to navigate complexity and create change in our interconnected world.

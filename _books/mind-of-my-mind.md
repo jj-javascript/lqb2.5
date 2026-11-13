@@ -8,6 +8,9 @@ goodreads: https://www.goodreads.com/book/show/157666406
 review: true
 year_read: 2024
 sample: false
+tags:
+  - all-black-everything
+  - futurism
 ---
 
 note: tried to write this in such a way that it doesn't spoil too much. 

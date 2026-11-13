@@ -8,6 +8,9 @@ goodreads: https://www.goodreads.com/book/show/198843270
 review: false
 year_read: 2025
 sample: true
+tags:
+  - all-black-everything
+  - movement
 ---
 
 New York Times–bestselling author adrienne maree brown transcends binary thinking about "accountability" and shares dignified, holistic ways for individuals and communities to address harmful and destructive patterns.

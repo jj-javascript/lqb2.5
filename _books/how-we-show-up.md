@@ -9,6 +9,8 @@ highlights: https://docs.google.com/document/d/1IOZcmGFJFHIWAXjU30tsqa6NOeR60Mk_
 review: false
 year_read: 2021
 sample: false
+tags:
+  - community
 ---
 
 An Invitation to Community and Models for Connection

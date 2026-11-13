@@ -9,6 +9,8 @@ highlights: https://docs.google.com/document/d/1jBGG1f5bqd-1Zon9cC_79UKKK99lDx6u
 review: true
 year_read: 2020
 sample: false
+tags:
+  - grief-and-mourning
 ---
 
 What are the main ideas? 
