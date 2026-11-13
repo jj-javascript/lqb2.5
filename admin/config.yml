@@ -37,9 +37,10 @@ collections:
               Auto-filled by the importer from the shelves on Lawrence's
               public Goodreads profile (reading-status shelves and
               special-books are never added). The importer tags each book
-              with the checked shelves it belongs to. To stop tagging with
-              a shelf, UNCHECK "Mirror as tag" - don't delete the entry,
-              or discovery will re-add it on the next import.
+              with the checked shelves it belongs to.               To stop a shelf appearing on the site: uncheck "Mirror as
+              tag" (do not delete the row, or the next import adds it
+              back), then delete that tag in the Tags collection. Deleting
+              the tag removes it from books and from the bookshelf menu.
             fields:
               - { name: name, label: Display Name, widget: string }
               - { name: slug, label: Goodreads shelf slug, widget: string }

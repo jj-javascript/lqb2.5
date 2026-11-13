@@ -44,6 +44,9 @@ shelves:
   - name: Children S Books
     slug: children-s-books
     tag: true
+  - name: Reed Reads
+    slug: reed-reads
+    tag: false
   - name: Men Patriarchy
     slug: men-patriarchy
     tag: true

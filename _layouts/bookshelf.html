@@ -14,6 +14,15 @@ layout: default
       <label for="bookSearch" class="visually-hidden">Search books</label>
       <input type="search" id="bookSearch" class="bookshelf-search" placeholder="Search books…" autocomplete="off">
       {% assign category_slugs = site.data.categories.categories | map: "slug" | join: "|" | prepend: "|" | append: "|" %}
+      {% assign used_slugs = "|" %}
+      {% for book in site.books %}
+        {% for tag in book.tags %}
+          {% assign needle = "|" | append: tag | append: "|" %}
+          {% unless used_slugs contains needle %}
+            {% assign used_slugs = used_slugs | append: tag | append: "|" %}
+          {% endunless %}
+        {% endfor %}
+      {% endfor %}
       <div class="bookshelf-filters">
         <label for="categoryFilter" class="visually-hidden">Filter by category</label>
         <select id="categoryFilter" class="bookshelf-category-select">
@@ -23,9 +32,11 @@ layout: default
           {%- endfor -%}
           {%- for cat in site.data.shelf_categories -%}
             {% assign needle = "|" | append: cat.slug | append: "|" %}
-            {% unless category_slugs contains needle %}
-              <option value="{{ cat.slug }}">{{ cat.name }}</option>
-            {% endunless %}
+            {% if used_slugs contains needle %}
+              {% unless category_slugs contains needle %}
+                <option value="{{ cat.slug }}">{{ cat.name }}</option>
+              {% endunless %}
+            {% endif %}
           {%- endfor -%}
         </select>
       </div>
