@@ -14,6 +14,7 @@ categories:
 tags:
   - all-black-everything
   - healing
+  - memoir
   - movement
   - race
   - somatics

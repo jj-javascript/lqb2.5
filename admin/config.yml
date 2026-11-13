@@ -13,23 +13,12 @@ collections:
   - name: data
     label: Site Data
     files:
-      - name: categories
-        label: Categories
-        file: _data/categories.yml
-        fields:
-          - name: categories
-            label: Categories
-            label_singular: Category
-            widget: list
-            fields:
-              - { name: name, label: Name, widget: string }
-              - { name: slug, label: Slug, widget: string }
       - name: goodreads_shelves
-        label: Goodreads Shelves
+        label: Bookshelves
         file: _data/goodreads_shelves.yml
         fields:
           - name: shelves
-            label: Category shelves to mirror as tags
+            label: Bookshelves
             label_singular: Shelf
             widget: list
             required: false
@@ -37,14 +26,13 @@ collections:
               Auto-filled by the importer from the shelves on Lawrence's
               public Goodreads profile (reading-status shelves and
               special-books are never added). The importer tags each book
-              with the checked shelves it belongs to.               To stop a shelf appearing on the site: uncheck "Mirror as
-              tag" (do not delete the row, or the next import adds it
-              back), then delete that tag in the Tags collection. Deleting
-              the tag removes it from books and from the bookshelf menu.
+              with the checked shelves it belongs to. To hide a shelf from
+              the site: uncheck "Show on site" - do not delete the row, or
+              the next import adds it back.
             fields:
               - { name: name, label: Display Name, widget: string }
               - { name: slug, label: Goodreads shelf slug, widget: string }
-              - { name: tag, label: Mirror as tag, widget: boolean, default: true }
+              - { name: tag, label: Show on site, widget: boolean, default: true }
 
   - name: books
     label: Books
@@ -63,34 +51,30 @@ collections:
       - { name: review, label: "Is Lawrence's Review?", widget: boolean, default: false }
       - { name: year_read, label: Year Read, widget: number }
       - { name: sample, label: Sample (not curated), widget: boolean, default: false }
-      - name: categories
+      - name: tags
         label: Categories
         widget: relation
         collection: data
-        file: categories
+        file: goodreads_shelves
         multiple: true
         required: false
-        value_field: "{{categories.*.slug}}"
-        display_fields: ["{{categories.*.name}}"]
-        search_fields: ["{{categories.*.name}}"]
-      - name: tags
-        label: Tags (Goodreads shelves)
-        widget: relation
-        collection: tags
-        multiple: true
-        required: false
-        value_field: "{{slug}}"
-        display_fields: ["{{name}}"]
-        search_fields: ["{{name}}"]
+        value_field: "{{shelves.*.slug}}"
+        display_fields: ["{{shelves.*.name}}"]
+        search_fields: ["{{shelves.*.name}}"]
       - { name: cover_source_url, label: Cover Source URL, widget: hidden, required: false }
       - { name: body, label: Review/Summary, widget: markdown }
 
   - name: tags
-    label: Tags
-    label_singular: Tag
+    label: Unused Tags
+    label_singular: Unused Tag
     folder: _tags
-    create: true
+    create: false
     slug: "{{slug}}"
+    description: >-
+      Shelves that are turned on in Bookshelves ("Show on site") but that
+      no library book carries yet. Entries are auto-managed by the book
+      importer: they appear here when a shelf has no books and disappear
+      once a book picks the shelf up (or the shelf is switched off).
     fields:
       - { name: name, label: Name, widget: string }
       - { name: slug, label: Slug, widget: string }

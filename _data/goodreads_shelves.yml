@@ -374,3 +374,9 @@ shelves:
   - name: Rest And Dreaming
     slug: rest-and-dreaming
     tag: true
+  - name: Social Justice
+    slug: social-justice
+    tag: true
+  - name: Systems Thinking
+    slug: systems-thinking
+    tag: true

@@ -13,6 +13,7 @@ categories:
  - social-justice
 tags:
   - rj-tj-ca
+  - social-justice
   - transformative-justice
 ---
 

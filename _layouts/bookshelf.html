@@ -13,7 +13,6 @@ layout: default
     <div class="bookshelf-controls">
       <label for="bookSearch" class="visually-hidden">Search books</label>
       <input type="search" id="bookSearch" class="bookshelf-search" placeholder="Search books…" autocomplete="off">
-      {% assign category_slugs = site.data.categories.categories | map: "slug" | join: "|" | prepend: "|" | append: "|" %}
       {% assign used_slugs = "|" %}
       {% for book in site.books %}
         {% for tag in book.tags %}
@@ -23,19 +22,15 @@ layout: default
           {% endunless %}
         {% endfor %}
       {% endfor %}
+      {% assign shelves_sorted = site.data.goodreads_shelves.shelves | sort: "name" %}
       <div class="bookshelf-filters">
         <label for="categoryFilter" class="visually-hidden">Filter by category</label>
         <select id="categoryFilter" class="bookshelf-category-select">
           <option value="">All categories</option>
-          {%- for cat in site.data.categories.categories -%}
-            <option value="{{ cat.slug }}">{{ cat.name }}</option>
-          {%- endfor -%}
-          {%- for cat in site.data.shelf_categories -%}
-            {% assign needle = "|" | append: cat.slug | append: "|" %}
-            {% if used_slugs contains needle %}
-              {% unless category_slugs contains needle %}
-                <option value="{{ cat.slug }}">{{ cat.name }}</option>
-              {% endunless %}
+          {%- for shelf in shelves_sorted -%}
+            {% assign needle = "|" | append: shelf.slug | append: "|" %}
+            {% if shelf.tag != false and used_slugs contains needle %}
+              <option value="{{ shelf.slug }}">{{ shelf.name }}</option>
             {% endif %}
           {%- endfor -%}
         </select>
