@@ -82,7 +82,7 @@ shelves:
     tag: true
   - name: 2022 Must Read
     slug: 2022-must-read
-    tag: true
+    tag: false
   - name: Parenting
     slug: parenting
     tag: true
