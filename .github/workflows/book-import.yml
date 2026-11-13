@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for p in _books _tags _import_queue assets/images/books _data/goodreads_shelves.yml; do
+          for p in _books _tags _import_queue assets/images/books _data/goodreads_shelves.yml _data/shelf_categories.yml; do
             if [ -e "$p" ]; then git add "$p"; fi
           done
           if git diff --cached --quiet; then

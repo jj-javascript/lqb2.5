@@ -8,8 +8,9 @@
     {% assign filter_slugs = filter_slugs | append: slug | append: "|" %}
   {% endunless %}
 {% endfor %}
+{% assign filter_parts = filter_slugs | split: "|" %}
 {% assign filter_json = "" %}
-{% for slug in filter_slugs | split: "|" %}
+{% for slug in filter_parts %}
   {% if slug != "" %}
     {% unless filter_json == "" %}{% assign filter_json = filter_json | append: "," %}{% endunless %}
     {% assign filter_json = filter_json | append: '"' | append: slug | append: '"' %}
