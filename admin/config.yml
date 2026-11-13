@@ -34,12 +34,16 @@ collections:
             widget: list
             required: false
             hint: >-
-              Lawrence's Goodreads category shelves. The importer tags each
-              book with the shelves it belongs to. Leave out special-books
-              and reading-status shelves (read, to-read, currently-reading).
+              Auto-filled by the importer from the shelves on Lawrence's
+              public Goodreads profile (reading-status shelves and
+              special-books are never added). The importer tags each book
+              with the checked shelves it belongs to. To stop tagging with
+              a shelf, UNCHECK "Mirror as tag" - don't delete the entry,
+              or discovery will re-add it on the next import.
             fields:
               - { name: name, label: Display Name, widget: string }
               - { name: slug, label: Goodreads shelf slug, widget: string }
+              - { name: tag, label: Mirror as tag, widget: boolean, default: true }
 
   - name: books
     label: Books

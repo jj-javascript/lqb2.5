@@ -21,9 +21,13 @@ Per queue item:
      A pasted review is also attached to an already-present book that has
      none; a book's existing review is never overwritten.
   5. Tags come from Lawrence's OWN Goodreads category shelves, not from
-     community genres: the shelf names are listed in
-     _data/goodreads_shelves.yml (editable in /admin under Site Data), and
-     membership is read anonymously via the public grid widget
+     community genres: the shelf list in _data/goodreads_shelves.yml
+     (editable in /admin under Site Data) is auto-seeded each run from the
+     shelves on his PUBLIC profile page (top shelves only; status shelves
+     and special-books excluded). Each entry has a "Mirror as tag" flag -
+     uncheck it in /admin to stop tagging with a shelf (deleting the entry
+     would just make discovery re-add it). Membership is then read
+     anonymously via the public grid widget
      (review/grid_widget?shelf=<slug>), which - unlike the shelf pages and
      RSS - still works without login and honors the shelf parameter
      (verified Nov 2026; returns up to ~200 books per shelf). Each shelf
@@ -70,6 +74,15 @@ QUEUE_DIR = ROOT / "_import_queue"
 SHELVES_CONFIG = ROOT / "_data" / "goodreads_shelves.yml"
 
 GOODREADS_USER_ID = "61877628"
+PROFILE_URL = f"https://www.goodreads.com/user/show/{GOODREADS_USER_ID}"
+# Never mirrored as tags: reading-status shelves plus special-books (which
+# marks digital-library membership, not a category).
+STATUS_SHELVES = {"read", "to-read", "currently-reading", "did-not-finish", "special-books"}
+# Status shelves render as ?shelf= links, custom category shelves as ?tag=
+# links (observed Nov 2026); the user id may carry a "-lawrence" suffix.
+SHELF_LINK_RE = re.compile(
+    rf"review/list/{GOODREADS_USER_ID}(?:-[A-Za-z0-9-]+)?\?(?:shelf|tag)=([A-Za-z0-9_-]+)"
+)
 BOOK_URL_RE = re.compile(r"goodreads\.com/book/show/(\d+)")
 GRID_WIDGET_URL = (
     "https://www.goodreads.com/review/grid_widget/{user}.x"
@@ -222,7 +235,11 @@ def mark_queue_item(pending: dict[Path, str], path: Path, status: str) -> None:
 
 
 def load_shelf_config() -> list[dict]:
-    """Lawrence's category shelves to mirror as tags: [{name, slug}, ...]."""
+    """Lawrence's shelves from config: [{name, slug, tag}, ...].
+
+    Entries with tag=false are known (so discovery won't re-add them) but
+    are not mirrored as tags.
+    """
     if not SHELVES_CONFIG.exists():
         return []
     data = yaml.safe_load(SHELVES_CONFIG.read_text(encoding="utf-8")) or {}
@@ -230,8 +247,63 @@ def load_shelf_config() -> list[dict]:
     for entry in data.get("shelves") or []:
         slug = slugify(str(entry.get("slug") or entry.get("name") or ""))
         if slug:
-            shelves.append({"name": str(entry.get("name") or slug), "slug": slug})
+            shelves.append(
+                {
+                    "name": str(entry.get("name") or slug),
+                    "slug": slug,
+                    "tag": bool(entry.get("tag", True)),
+                }
+            )
     return shelves
+
+
+def discover_shelves(session) -> list[dict]:
+    """Shelves on Lawrence's PUBLIC profile page (top shelves only, no login).
+
+    Status shelves and special-books are excluded. Raises QueueItemError on
+    fetch failure or if no shelves parse (page layout changed?).
+    """
+    resp = session.get(PROFILE_URL, timeout=60)
+    if resp.status_code != 200:
+        raise QueueItemError(f"profile page HTTP {resp.status_code}")
+    slugs: list[str] = []
+    for slug in SHELF_LINK_RE.findall(resp.text):
+        s = slug.lower()
+        if s not in STATUS_SHELVES and s not in slugs:
+            slugs.append(s)
+    if not slugs:
+        raise QueueItemError("no shelves found on profile page (layout changed?)")
+    return [
+        {"name": s.replace("-", " ").title(), "slug": s, "tag": True}
+        for s in slugs
+    ]
+
+
+def seed_shelf_config(shelves: list[dict], discovered: list[dict]) -> list[dict]:
+    """Append newly discovered shelves to the config file; return new entries.
+
+    The editor stops tagging with a shelf by unchecking "Mirror as tag" in
+    /admin - NOT by deleting the entry, which would make discovery re-add it.
+    Leading comment lines in the config file are preserved.
+    """
+    known = {s["slug"] for s in shelves}
+    new = [d for d in discovered if d["slug"] not in known]
+    if not new:
+        return []
+    lines: list[str] = []
+    if SHELVES_CONFIG.exists():
+        for line in SHELVES_CONFIG.read_text(encoding="utf-8").splitlines():
+            if line.startswith("#"):
+                lines.append(line)
+            else:
+                break
+    lines.append("shelves:")
+    for s in shelves + new:
+        lines.append(f"  - name: {yaml_escape(s['name'])}")
+        lines.append(f"    slug: {yaml_escape(s['slug'])}")
+        lines.append(f"    tag: {'true' if s.get('tag', True) else 'false'}")
+    SHELVES_CONFIG.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return new
 
 
 def fetch_shelf_members(session, shelf_slug: str) -> set[str]:
@@ -323,8 +395,19 @@ def main() -> int:
     print(f"{len(index)} existing book(s) in CMS")
 
     shelves = load_shelf_config()
+    try:
+        seeded = seed_shelf_config(shelves, discover_shelves(session))
+        if seeded:
+            shelves = load_shelf_config()  # reload including new entries
+            for s in seeded:
+                print(f"new shelf discovered, added to config: {s['slug']!r}")
+    except QueueItemError as exc:
+        seeded = []
+        print(f"  ! shelf discovery skipped this run: {exc}")
+
+    enabled_shelves = [s for s in shelves if s["tag"]]
     shelf_members: dict[str, set[str]] = {}
-    for s in shelves:
+    for s in enabled_shelves:
         try:
             members = fetch_shelf_members(session, s["slug"])
             shelf_members[s["slug"]] = members
@@ -332,8 +415,8 @@ def main() -> int:
             print(f"shelf {s['slug']!r}: {len(members)} book(s){note}")
         except QueueItemError as exc:
             print(f"  ! shelf {s['slug']!r} skipped this run: {exc}")
-    if not shelves:
-        print("no shelves configured in _data/goodreads_shelves.yml; no tags will be added")
+    if not enabled_shelves:
+        print("no shelves enabled for tagging; no tags will be added")
 
     pending: dict[Path, str] = {}  # staged text writes, flushed together
     pending_bin: dict[Path, bytes] = {}
@@ -364,7 +447,7 @@ def main() -> int:
             continue
         seen_keys.add(key)
 
-        tags = book_tags(book_id, shelf_members, shelves)
+        tags = book_tags(book_id, shelf_members, enabled_shelves)
         needed_tags.update(tags)
         existing = index.get(key)
 
@@ -494,6 +577,9 @@ def main() -> int:
     print(f"Covers overwritten:   {len(covers_updated)}")
     for t in covers_updated:
         print(f"  ~ {t}")
+    print(f"Shelves auto-seeded:  {len(seeded)}")
+    for s in seeded:
+        print(f"  + {s['slug']}")
     print(f"Tag docs created:     {len(created)}")
     for s in created:
         print(f"  + {s}")
