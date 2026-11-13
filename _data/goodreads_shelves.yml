@@ -1,16 +1,3 @@
-# Lawrence's Goodreads category shelves to mirror as tags on imported books.
-#
-# When Lawrence creates a new category shelf on Goodreads, add it here (or in
-# /admin under Site Data -> Goodreads Shelves) so the importer starts tagging
-# with it. Membership is read anonymously from the public grid widget, so no
-# Goodreads login is needed. Do NOT list special-books here: it marks which
-# books belong in the digital library, not a category. Reading-status shelves
-# (read, to-read, currently-reading, did-not-finish) should also be left out.
-#
-# Example:
-#   shelves:
-#     - name: Parenting
-#       slug: parenting
 shelves:
   - name: All Black Everything
     slug: all-black-everything
@@ -56,9 +43,6 @@ shelves:
     tag: true
   - name: Children S Books
     slug: children-s-books
-    tag: true
-  - name: Reed Reads
-    slug: reed-reads
     tag: true
   - name: Men Patriarchy
     slug: men-patriarchy
