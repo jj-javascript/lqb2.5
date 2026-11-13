@@ -1,6 +1,6 @@
 ---
-title: "Pedagogy of the Oppressed"
-author: "Paulo Freire"
+title: Pedagogy of the Oppressed
+author: Paulo Freire
 cover: /assets/images/books/pedagogy-of-the-oppressed.webp
 cover_width: 200
 cover_height: 298
@@ -12,7 +12,6 @@ sample: false
 tags:
   - favorite
   - on-loan
-  - reed-reads
 ---
 
 8 august 2018

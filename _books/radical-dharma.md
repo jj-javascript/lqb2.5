@@ -1,6 +1,6 @@
 ---
-title: "Radical Dharma: Talking Race, Love, and Liberation"
-author: "Angel Kyodo Williams"
+title: 'Radical Dharma: Talking Race, Love, and Liberation'
+author: Angel Kyodo Williams
 cover: /assets/images/books/radical-dharma.webp
 cover_width: 200
 cover_height: 290
@@ -11,7 +11,6 @@ year_read: 2017
 sample: false
 tags:
   - buddhism
-  - reed-reads
   - spirituality
 ---
 

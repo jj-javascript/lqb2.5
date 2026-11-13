@@ -1,6 +1,6 @@
 ---
-title: "Collective Courage: A History of African American Cooperative Economic Thought and Practice"
-author: "Jessica Gordon Nembhard"
+title: 'Collective Courage: A History of African American Cooperative Economic Thought and Practice'
+author: Jessica Gordon Nembhard
 cover: /assets/images/books/collective-courage.webp
 cover_width: 200
 cover_height: 299
@@ -15,7 +15,6 @@ tags:
   - movement
   - new-economy
   - race
-  - reed-reads
   - urban-planning
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: "Deep Work: Rules for Focused Success in a Distracted World"
-author: "Cal Newport"
+title: 'Deep Work: Rules for Focused Success in a Distracted World'
+author: Cal Newport
 cover: /assets/images/books/deep-work.webp
 cover_width: 200
 cover_height: 301
@@ -10,7 +10,6 @@ review: true
 year_read: 2017
 sample: false
 tags:
-  - reed-reads
   - self-mastery
 ---
 

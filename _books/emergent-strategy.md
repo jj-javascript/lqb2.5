@@ -1,6 +1,6 @@
 ---
-title: "Emergent Strategy: Shaping Change, Changing Worlds (Emergent Strategy, #0)"
-author: "Adrienne Maree Brown"
+title: 'Emergent Strategy: Shaping Change, Changing Worlds (Emergent Strategy, #0)'
+author: Adrienne Maree Brown
 cover: /assets/images/books/emergent-strategy.webp
 cover_width: 200
 cover_height: 319
@@ -14,7 +14,6 @@ tags:
   - facilitation
   - footlong-bookshelf
   - movement
-  - reed-reads
   - strategy
   - transformative-justice
 ---

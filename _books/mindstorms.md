@@ -1,6 +1,6 @@
 ---
-title: "Mindstorms: Children, Computers, and Powerful Ideas"
-author: "Seymour Papert"
+title: 'Mindstorms: Children, Computers, and Powerful Ideas'
+author: Seymour Papert
 cover: /assets/images/books/mindstorms.webp
 cover_width: 200
 cover_height: 305
@@ -10,7 +10,6 @@ year_read: 2017
 sample: false
 tags:
   - education
-  - reed-reads
 ---
 
 ht sharon de la cruz. note: i read this as a part of the princeton studiolab & p5js interactive book club: https://diversity.p5js.org/aboutserie...
