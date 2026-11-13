@@ -55,7 +55,7 @@ shelves:
     tag: true
   - name: On Loan
     slug: on-loan
-    tag: true
+    tag: false
   - name: Trauma
     slug: trauma
     tag: true
