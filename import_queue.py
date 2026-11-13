@@ -16,7 +16,10 @@ Per queue item:
      books. Already-present books are a no-op apart from the cover-source
      check and append-only tag merge.
   4. New book -> create entry (cover re-encoded to WebP, Goodreads URL,
-     description as body, tag references from Lawrence's own shelves).
+     body = review pasted into the queue form (review: true) or else the
+     public description, tag references from Lawrence's own shelves).
+     A pasted review is also attached to an already-present book that has
+     none; a book's existing review is never overwritten.
   5. Tags come from Lawrence's OWN Goodreads category shelves, not from
      community genres: the shelf names are listed in
      _data/goodreads_shelves.yml (editable in /admin under Site Data), and
@@ -271,16 +274,17 @@ def stage_tag_docs(pending: dict[Path, str], needed: dict[str, str]) -> list[str
 # ---------------------------------------------------------------- main
 
 
-def read_queue() -> tuple[list[tuple[Path, str]], list[tuple[Path, str]]]:
+def read_queue() -> tuple[list[tuple[Path, str, str]], list[tuple[Path, str]]]:
     """Split the queue into importable and permanently-invalid items.
 
-    Returns (items, invalid): items are (queue file, goodreads book id);
-    invalid are (queue file, human-readable reason) for URLs that can never
-    import (e.g. not a /book/show/ link) - these get a status note written
-    back rather than being retried forever. Items that already carry a
-    status from a previous run are skipped entirely.
+    Returns (items, invalid): items are (queue file, goodreads book id,
+    pasted review text or ""); invalid are (queue file, human-readable
+    reason) for URLs that can never import (e.g. not a /book/show/ link) -
+    these get a status note written back rather than being retried forever.
+    Items that already carry a status from a previous run are skipped
+    entirely.
     """
-    items: list[tuple[Path, str]] = []
+    items: list[tuple[Path, str, str]] = []
     invalid: list[tuple[Path, str]] = []
     if not QUEUE_DIR.exists():
         return items, invalid
@@ -303,7 +307,7 @@ def read_queue() -> tuple[list[tuple[Path, str]], list[tuple[Path, str]]]:
                 )
             )
             continue
-        items.append((path, m.group(1)))
+        items.append((path, m.group(1), str(fm.get("review") or "").strip()))
     return items, invalid
 
 
@@ -347,7 +351,7 @@ def main() -> int:
         mark_queue_item(pending, path, reason)
         print(f"  ! {path.name}: {reason}")
 
-    for queue_path, book_id in queue:
+    for queue_path, book_id, review_text in queue:
         try:
             book = fetch_book(session, book_id)
         except QueueItemError as exc:
@@ -385,7 +389,7 @@ def main() -> int:
                 f"cover_width: {width or 200}",
                 f"cover_height: {height or 300}",
                 f"goodreads: {yaml_escape(book['goodreads_url'])}",
-                "review: false",
+                f"review: {'true' if review_text else 'false'}",
                 "sample: false",
             ]
             if tags:
@@ -395,7 +399,9 @@ def main() -> int:
                 fm_lines.append(
                     f"cover_source_url: {yaml_escape(book['cover_url'])}"
                 )
-            body = f"\n{book['description']}\n" if book["description"] else ""
+            # Pasted review takes precedence over the public description.
+            body_text = review_text or book["description"]
+            body = f"\n{body_text}\n" if body_text else ""
             pending[BOOKS_DIR / f"{slug}.md"] = write_doc(
                 "\n".join(fm_lines), body
             )
@@ -441,6 +447,15 @@ def main() -> int:
             fm_text = set_list(fm_text, "tags", merged)
             tags_appended.append(book["title"])
 
+        # Pasted review: attach it unless the book already has one.
+        status_extra = ""
+        if review_text and fm.get("review"):
+            status_extra = " - existing review kept (edit the book in /admin to change it)"
+        elif review_text:
+            fm_text = set_scalar(fm_text, "review", "true")
+            body = f"\n{review_text}\n"
+            status_extra = " - your review was added"
+
         new_text = write_doc(fm_text, body)
         if new_text != path.read_text(encoding="utf-8"):
             pending[path] = new_text
@@ -448,9 +463,10 @@ def main() -> int:
         mark_queue_item(
             pending,
             queue_path,
-            f"Already in collection: {book['title']} by {book['author']}",
+            f"Already in collection: {book['title']} by {book['author']}"
+            + status_extra,
         )
-        already_present.append(book["title"])
+        already_present.append(book["title"] + status_extra)
 
     created = stage_tag_docs(pending, needed_tags)
 

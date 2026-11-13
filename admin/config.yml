@@ -108,6 +108,14 @@ collections:
         label: Goodreads Book URL
         widget: string
         hint: "Example: https://www.goodreads.com/book/show/17465709"
+      - name: review
+        label: "Lawrence's Review (optional)"
+        widget: text
+        required: false
+        hint: >-
+          Paste Lawrence's review here to have it imported as the book's
+          review. If the book is already in the collection without a review,
+          the review is added to it; an existing review is never overwritten.
       - name: status
         label: Status
         widget: string
