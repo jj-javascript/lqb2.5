@@ -6,7 +6,7 @@ cover_width: 200
 cover_height: 300
 goodreads: https://www.goodreads.com/book/show/95747
 highlights: https://docs.google.com/document/d/1SOuAQXOhbeIfowBmidNkG5DLeYMlgNuInZULTCqRJ1w/edit?tab=t.0#heading=h.alqf98fuc4io
-review: false
+review: true
 year_read: 2019
 tags: []
 ---
