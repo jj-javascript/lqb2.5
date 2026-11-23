@@ -8,7 +8,9 @@ goodreads: https://www.goodreads.com/book/show/95747
 highlights: https://docs.google.com/document/d/1SOuAQXOhbeIfowBmidNkG5DLeYMlgNuInZULTCqRJ1w/edit?tab=t.0#heading=h.alqf98fuc4io
 review: true
 year_read: 2019
-tags: []
+tags:
+  - spirituality
+  - buddhism
 ---
 
 \*\*What are the main ideas?\*\*
