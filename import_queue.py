@@ -172,6 +172,9 @@ def fetch_book(session, book_id: str) -> dict:
 def split_front_matter(text: str) -> tuple[dict, str, str]:
     m = re.match(r"^---\n(.*?)\n---\n?(.*)$", text, re.S)
     if not m:
+        # #region agent log
+        import json as _j, time as _t; open("/Users/justinjimenez/Downloads/AI Fellowship/lqb2.5/.cursor/debug-511366.log", "a").write(_j.dumps({"sessionId": "511366", "hypothesisId": "A,B,C,D", "location": "import_queue.py:split_front_matter", "message": "front matter regex did not match", "data": {"prefix": repr(text[:80]), "has_crlf": "\r\n" in text, "starts_with_dashes": text.startswith("---")}, "timestamp": _t.time() * 1000}) + "\n")
+        # #endregion
         raise QueueItemError("file missing front matter block")
     return yaml.safe_load(m.group(1)) or {}, m.group(1), m.group(2)
 
@@ -643,8 +646,17 @@ def main() -> int:
                 warnings.append(f"{path.name}: sweep skipped ({exc})")
                 continue
             # Re-read any text already staged this run (e.g. a tag merge).
-            fm_text = pending.get(path, entry["fm_text"])
-            fm_text = split_front_matter(fm_text)[1]
+            # pending holds FULL documents (with --- delimiters), while
+            # entry["fm_text"] is already the inner front matter text.
+            staged = pending.get(path)
+            # #region agent log
+            import json as _j, time as _t; open("/Users/justinjimenez/Downloads/AI Fellowship/lqb2.5/.cursor/debug-511366.log", "a").write(_j.dumps({"sessionId": "511366", "hypothesisId": "A", "location": "import_queue.py:main-sweep", "message": "sweep re-read fm_text", "data": {"path": path.name, "staged_in_pending": staged is not None}, "timestamp": _t.time() * 1000, "runId": "post-fix"}) + "\n")
+            # #endregion
+            fm_text = (
+                split_front_matter(staged)[1]
+                if staged is not None
+                else entry["fm_text"]
+            )
             try:
                 fm_text, overwritten = cover_sync(
                     session, book["cover_url"], fm, fm_text, pending_bin
