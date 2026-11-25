@@ -708,7 +708,7 @@ figcaption {
   position: relative;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-end;
   padding: 16px 16px 24px;
   gap: 16px; }
