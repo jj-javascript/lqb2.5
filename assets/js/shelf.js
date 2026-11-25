@@ -92,6 +92,27 @@
       });
     }
 
+    if (sortBy === 'year-desc' || sortBy === 'year-asc') {
+      var direction = sortBy === 'year-desc' ? -1 : 1;
+      return cardList.slice().sort(function (a, b) {
+        var yearA = parseInt(a.getAttribute('data-year'), 10);
+        var yearB = parseInt(b.getAttribute('data-year'), 10);
+        var hasA = !isNaN(yearA);
+        var hasB = !isNaN(yearB);
+
+        if (hasA && hasB) {
+          return (yearA - yearB) * direction;
+        }
+        if (hasA) {
+          return -1;
+        }
+        if (hasB) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+
     return cardList.slice().sort(function (a, b) {
       var valA = sortFieldValue(a, sortBy);
       var valB = sortFieldValue(b, sortBy);

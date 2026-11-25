@@ -17,13 +17,15 @@ Per queue item:
      check and append-only tag merge.
   4. New book -> create entry (cover re-encoded to WebP, Goodreads URL,
      body = review pasted into the queue form (review: true) or else the
-     public description, tag references from Lawrence's own shelves).
+     public description, tag references from Lawrence's own shelves,
+     year_read from the pasted year - Goodreads no longer exposes read
+     dates publicly, so the year is entered by hand).
      A run that imports at least one NEW book also sweeps the rest of the
      library: every existing book with a goodreads link is re-fetched and
      its cover re-checked against the page (same first-observation /
      changed-URL rule), so stale covers elsewhere get caught.
-     A pasted review is also attached to an already-present book that has
-     none; a book's existing review is never overwritten.
+     A pasted review (or year read) is also attached to an already-present
+     book that has none; existing values are never overwritten.
   5. Tags come from Lawrence's OWN Goodreads category shelves, not from
      community genres: the shelf list in _data/goodreads_shelves.yml
      (editable in /admin under Site Data as "Bookshelves") is auto-seeded
@@ -61,6 +63,7 @@ import re
 import sys
 import time
 from pathlib import Path
+from typing import Optional
 
 import yaml  # PyYAML: parsing only; all writes are minimal text edits
 
@@ -433,17 +436,30 @@ def sync_unused_tags(shelves: list[dict]) -> tuple[list[str], list[str]]:
 # ---------------------------------------------------------------- main
 
 
-def read_queue() -> tuple[list[tuple[Path, str, str]], list[tuple[Path, str]]]:
+def parse_year_read(value: object, path: Path) -> Optional[int]:
+    """Validate a queue item's year_read; warn and ignore when implausible."""
+    raw = str(value or "").strip()
+    if not raw:
+        return None
+    if not re.fullmatch(r"(19|20)\d{2}", raw):
+        print(f"  ! {path.name}: year_read {raw!r} is not a 4-digit year; ignored")
+        return None
+    return int(raw)
+
+
+def read_queue() -> tuple[
+    list[tuple[Path, str, str, Optional[int]]], list[tuple[Path, str]]
+]:
     """Split the queue into importable and permanently-invalid items.
 
     Returns (items, invalid): items are (queue file, goodreads book id,
-    pasted review text or ""); invalid are (queue file, human-readable
-    reason) for URLs that can never import (e.g. not a /book/show/ link) -
-    these get a status note written back rather than being retried forever.
-    Items that already carry a status from a previous run are skipped
-    entirely.
+    pasted review text or "", pasted year read or None); invalid are
+    (queue file, human-readable reason) for URLs that can never import
+    (e.g. not a /book/show/ link) - these get a status note written back
+    rather than being retried forever. Items that already carry a status
+    from a previous run are skipped entirely.
     """
-    items: list[tuple[Path, str, str]] = []
+    items: list[tuple[Path, str, str, Optional[int]]] = []
     invalid: list[tuple[Path, str]] = []
     if not QUEUE_DIR.exists():
         return items, invalid
@@ -466,7 +482,14 @@ def read_queue() -> tuple[list[tuple[Path, str, str]], list[tuple[Path, str]]]:
                 )
             )
             continue
-        items.append((path, m.group(1), str(fm.get("review") or "").strip()))
+        items.append(
+            (
+                path,
+                m.group(1),
+                str(fm.get("review") or "").strip(),
+                parse_year_read(fm.get("year_read"), path),
+            )
+        )
     return items, invalid
 
 
@@ -521,7 +544,7 @@ def main() -> int:
         mark_queue_item(pending, path, reason)
         print(f"  ! {path.name}: {reason}")
 
-    for queue_path, book_id, review_text in queue:
+    for queue_path, book_id, review_text, year_read in queue:
         try:
             book = fetch_book(session, book_id)
         except QueueItemError as exc:
@@ -560,6 +583,8 @@ def main() -> int:
                 f"goodreads: {yaml_escape(book['goodreads_url'])}",
                 f"review: {'true' if review_text else 'false'}",
             ]
+            if year_read:
+                fm_lines.append(f"year_read: {year_read}")
             if tags:
                 fm_lines.append("tags:")
                 fm_lines.extend(f"  - {s}" for s in sorted(tags))
@@ -607,6 +632,11 @@ def main() -> int:
             fm_text = set_scalar(fm_text, "review", "true")
             body = f"\n{review_text}\n"
             status_extra = " - your review was added"
+
+        # Pasted year read: attach it unless the book already has one.
+        if year_read and not fm.get("year_read"):
+            fm_text = set_scalar(fm_text, "year_read", str(year_read))
+            status_extra += " - year read added"
 
         new_text = write_doc(fm_text, body)
         if new_text != path.read_text(encoding="utf-8"):

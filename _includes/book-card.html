@@ -19,6 +19,7 @@
 <article class="book-card{% unless include.book.content %} book-card--no-review{% endunless %}"
          data-title="{{ include.book.title | downcase }}"
          data-author="{{ include.book.author | downcase }}"
+         data-year="{{ include.book.year_read }}"
          data-categories='[{{ filter_json }}]'
          tabindex="0"
          aria-label="Flip to see review for {{ include.book.title }}">
