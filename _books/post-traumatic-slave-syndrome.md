@@ -13,6 +13,7 @@ tags:
   - all-black-everything
   - healing
   - history
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1389589387i/18221876.jpg"
 ---
 
 What are the main ideas?

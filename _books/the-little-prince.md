@@ -8,6 +8,7 @@ goodreads: https://www.goodreads.com/book/show/157993
 review: true
 year_read: 2017
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1367545443i/157993.jpg"
 ---
 
 recommended by ambroise nahas. 

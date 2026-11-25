@@ -1,4 +1,0 @@
----
-name: History
-slug: history
----

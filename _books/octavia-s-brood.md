@@ -11,6 +11,7 @@ sample: false
 tags:
   - futurism
   - movement
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1425611661i/23129839.jpg"
 ---
 
 this collection of futurist stories is an experiment in individual and collective imagination; it is a step in the direction of decolonizing our imaginations and that process is critically important. some of the stories were clear favorites for me, but i think only because they resonated with my specific context and perspectives. i can imagine other stories resonating for other people and the ones that were good for me not being so good for them.

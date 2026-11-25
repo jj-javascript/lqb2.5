@@ -1,4 +1,0 @@
----
-name: Trauma
-slug: trauma
----

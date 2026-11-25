@@ -14,6 +14,7 @@ tags:
   - coaching
   - healing
   - trauma
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1620695382i/55384168.jpg"
 ---
 
 What are the main ideas? 

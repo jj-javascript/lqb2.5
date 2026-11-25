@@ -11,6 +11,7 @@ year_read: 2017
 sample: false
 tags:
   - all-black-everything
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1328325086i/6582906.jpg"
 ---
 
 by far the strangest book i've read all year... maybe ever. i probably understood about 30% of the content of this book; mostly in the form of vignettes strung together between ideas either too complex or too embedded within french culture for me to understand. that said, the parts of this that i did understand were incredibly powerful. some of the ideas and conceptual frames are just unreal. ideas about past, present, & future, race, relationships across race, internalized whiteness supremacy, anti-semitism as it relates to anti-blackness, just... so... much. also, the conclusion is fire.

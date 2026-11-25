@@ -12,6 +12,7 @@ tags:
   - futurism
   - new-economy
   - urban-planning
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1420404504i/550165.jpg"
 ---
 
 recommended by jonathan krones. 

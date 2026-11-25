@@ -1,0 +1,4 @@
+---
+name: Suicide
+slug: suicide
+---

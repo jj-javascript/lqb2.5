@@ -9,6 +9,7 @@ highlights: https://docs.google.com/document/d/1OFB88c6CzWG5kGXaccuTLzJV2MUjjH0l
 review: true
 year_read: 2018
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1461083288i/29363252.jpg"
 ---
 
 What are the main ideas? phew! this book is so dense that it's actually hard to answer this clearly. i'm also writing this a few months out so i'll try but i might be way off and distorting based on memory. 

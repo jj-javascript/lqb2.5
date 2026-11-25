@@ -1,4 +1,0 @@
----
-name: Medicine
-slug: medicine
----

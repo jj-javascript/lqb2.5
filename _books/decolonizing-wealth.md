@@ -16,6 +16,7 @@ tags:
   - medicine
   - movement
   - on-loan
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1524049217i/38245185.jpg"
 ---
 
 Decolonizing Wealth is a provocative analysis of the dysfunctional colonial dynamics at play in philanthropy and finance. Award-winning philanthropy executive Edgar Villanueva draws from the traditions from the Native way to prescribe the medicine for restoring balance and healing our divides.

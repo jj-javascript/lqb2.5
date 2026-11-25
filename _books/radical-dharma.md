@@ -12,6 +12,7 @@ sample: false
 tags:
   - buddhism
   - spirituality
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1465686938i/29429650.jpg"
 ---
 
 ht jax

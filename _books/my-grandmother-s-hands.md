@@ -18,6 +18,7 @@ tags:
   - movement
   - race
   - somatics
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1489155853i/34146782.jpg"
 ---
 
 **What are the main ideas?** 

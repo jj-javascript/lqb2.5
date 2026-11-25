@@ -13,6 +13,7 @@ tags:
   - all-black-everything
   - movement
   - transformative-justice
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1611556945i/56019003.jpg"
 ---
 
 What are the main ideas? 

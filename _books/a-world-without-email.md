@@ -9,6 +9,7 @@ highlights: https://docs.google.com/document/d/1XAmsQQF1gbSB04DT3dCuOysfnLA_BxPO
 review: false
 year_read: 2021
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1597016311i/54326146.jpg"
 ---
 
 A New York Times and Wall Street Journal bestseller

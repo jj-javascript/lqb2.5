@@ -13,6 +13,7 @@ tags:
   - healing
   - medicine
   - mysticism
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1522586374i/36710811.jpg"
 ---
 
 suggestion from g during a coaching session.

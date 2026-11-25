@@ -9,6 +9,7 @@ highlights: https://docs.google.com/document/d/1Tlu1FER0lgfi_5jcKpOVEsn1lYBfxTLF
 review: true
 year_read: 2017
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1771033511i/304502.jpg"
 ---
 
 brilliant read expanding on hooks' thinking in all about love, the first book in her love trilogy. in each chapter, hooks lays out amazing insights about love in different contexts. hooks weaves together of other intelligent thinkers, historical contexts, and personal insights in a way that produces incredible instruction for how to actually make progress as individuals, groups, and societies. she points out that, without a love ethic, our social movements are bound to recreate the same problematic structures that generated the need for the movements in the first place.

@@ -10,6 +10,7 @@ year_read: 2017
 sample: false
 tags:
   - futurism
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1441110911i/764646.jpg"
 ---
 
 the second part of the earthseed trilogy (of which only 2 books were published), we've moved forward in time and focus to the child of lauren olamina, our original protagonist. this book is shockingly prescient given the 2016 election of donald trump. butler introduces the messy nature of multigenerational changemaker families. it also leans hard into the very real possibilities of explicit slavery as natural ecosystems fail and power/wealth/control of technology are concentrated in shrinking small number of hands. how do you create a community that can sustain itself against all odds? turns out, that's even harder than it sounds...

@@ -1,0 +1,4 @@
+---
+name: Judaism
+slug: judaism
+---

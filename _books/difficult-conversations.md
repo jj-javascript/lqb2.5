@@ -12,6 +12,7 @@ sample: false
 tags:
   - comms
   - conflict
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1394996504i/7887687.jpg"
 ---
 
 The 10th-anniversary edition of the New York Times business bestseller-now updated with "Answers to Ten Questions People Ask"  

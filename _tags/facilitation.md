@@ -1,4 +1,0 @@
----
-name: Facilitation
-slug: facilitation
----

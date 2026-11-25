@@ -9,6 +9,7 @@ highlights: https://docs.google.com/document/d/11yExu8JxBy6g1kSNQFIWf3JLI66xhKrR
 review: false
 year_read: 2020
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1508572752i/34145663.jpg"
 ---
 
 This timely work will inform scholars and practitioners on the subjects of pervasive racial inequity and the healing offered by restorative justice practices. Addressing the intersectionality of race and the US criminal justice system, social activist Fania Davis explores how restorative justice has the capacity to disrupt patterns of mass incarceration through effective, equitable, and transformative approaches.

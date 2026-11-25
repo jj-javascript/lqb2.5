@@ -11,6 +11,7 @@ year_read: 2020
 sample: false
 tags:
   - grief-and-mourning
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1420793814i/23995457.jpg"
 ---
 
 What are the main ideas? 

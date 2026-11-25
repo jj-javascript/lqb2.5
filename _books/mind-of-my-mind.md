@@ -11,6 +11,7 @@ sample: false
 tags:
   - all-black-everything
   - futurism
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1684561870i/157666406.jpg"
 ---
 
 note: tried to write this in such a way that it doesn't spoil too much. 

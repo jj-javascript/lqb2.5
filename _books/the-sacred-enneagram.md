@@ -12,6 +12,7 @@ sample: false
 tags:
   - self-mastery
   - spirituality
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1504109539i/33098676.jpg"
 ---
 
 suggested to me by leanette pokuwaah, this book introduced me to the more spiritual roots and interpretations of the enneagram. good for overview of the tool as well as some depth for each of the nine 9 types. the building of each new layer of the tool was quite illuminating: desires, fears, intelligence centers, prayer postures, it's all amazing. I took extensive visual notes on this in my notebook and they were useful during one retreat I led (though maybe not useful enough...)

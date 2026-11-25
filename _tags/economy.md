@@ -1,4 +1,0 @@
----
-name: Economy
-slug: economy
----

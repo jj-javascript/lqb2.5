@@ -12,6 +12,7 @@ sample: false
 tags:
   - facilitation
   - race
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1420786480i/22775522.jpg"
 ---
 
 What are the main ideas? 

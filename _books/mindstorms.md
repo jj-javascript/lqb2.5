@@ -10,6 +10,7 @@ year_read: 2017
 sample: false
 tags:
   - education
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1348579820i/703532.jpg"
 ---
 
 ht sharon de la cruz. note: i read this as a part of the princeton studiolab & p5js interactive book club: https://diversity.p5js.org/aboutserie...

@@ -9,6 +9,7 @@ highlights: https://docs.google.com/document/d/1g83M_dS2s2LUm4P4ZSnJN-ydTwJ7iHYM
 review: false
 year_read: 2018
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1487633374i/33413863.jpg"
 ---
 
 Radical Hope is a collection of letters—to ancestors, to children five generations from now, to strangers in grocery lines, to any and all who feel weary and discouraged--written by award-winning novelists, poets, political thinkers, and activists. Provocative and inspiring, Radical Hope offers readers a kaleidoscopic view of the love and courage needed to navigate this time of upheaval, uncertainty, and fear, in view of the recent US presidential election.

@@ -11,6 +11,7 @@ year_read: 2021
 sample: false
 tags:
   - community
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1581417340i/45032310.jpg"
 ---
 
 An Invitation to Community and Models for Connection

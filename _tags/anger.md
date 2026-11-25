@@ -1,4 +1,0 @@
----
-name: Anger
-slug: anger
----

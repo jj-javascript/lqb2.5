@@ -1,0 +1,4 @@
+---
+name: Burnout
+slug: burnout
+---

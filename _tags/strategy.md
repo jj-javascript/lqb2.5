@@ -1,4 +1,0 @@
----
-name: Strategy
-slug: strategy
----

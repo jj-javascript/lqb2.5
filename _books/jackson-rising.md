@@ -19,6 +19,7 @@ tags:
   - self-mastery
   - systems-networks
   - urban-planning
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1508093982i/36418326.jpg"
 ---
 
 Mississippi, the poorest state in the U.S. with the highest percentage of Black people, a history of vicious racial terror and concurrent Black resistance is the backdrop and context for the drama captured in the collection of essays that is Jackson The Struggle for Economic Democracy and Self-Determination in Jackson Mississippi.

@@ -1,0 +1,4 @@
+---
+name: Class
+slug: class
+---

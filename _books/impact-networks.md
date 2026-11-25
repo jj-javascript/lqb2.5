@@ -11,6 +11,7 @@ year_read: 2021
 sample: false
 tags:
   - footlong-bookshelf
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1616495212i/56753443.jpg"
 ---
 
 This practical guide shows how to facilitate collaboration among diverse individuals and organizations to navigate complexity and create change in our interconnected world.

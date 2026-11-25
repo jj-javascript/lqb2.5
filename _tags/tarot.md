@@ -1,0 +1,4 @@
+---
+name: Tarot
+slug: tarot
+---

@@ -13,6 +13,7 @@ tags:
   - evolutionary-leadership
   - nature-environment
   - systems-networks
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1386923938i/270897.jpg"
 ---
 
 can't believe it took me this long to get to this and finish it. the size of the book definitely made it weird to carry around (page size was too big).

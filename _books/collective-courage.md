@@ -16,6 +16,7 @@ tags:
   - new-economy
   - race
   - urban-planning
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1401075648i/20783668.jpg"
 ---
 
 dr. gordon nembhard has done a thorough excavation of the history of cooperatives & cooperative-like structures among african americans from ~1900-2000. in this, she challenges that mainstream notion/popular perception that cooperatives are (and have always been) white. by showing how black folks have needed and used cooperative economics to survive, gordon nembhard has opened new doors for understanding today's socioeconomic thinkers and doers to understand, learn from, and build on the history of folks working together to get their basic needs met.

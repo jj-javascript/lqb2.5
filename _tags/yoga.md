@@ -1,0 +1,4 @@
+---
+name: Yoga
+slug: yoga
+---

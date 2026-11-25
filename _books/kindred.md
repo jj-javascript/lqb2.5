@@ -13,6 +13,7 @@ tags:
   - futurism
   - history
   - race
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1456379336i/28818221.jpg"
 ---
 
 phew. this was simultaneously a page-turner and a book i wanted to literally throw down at times. i haven't yet read the novel. the scene shifting is a masterful move to show the threads between the past and present and how "the past isn't even past." the way the main characters relate to each other is so powerful and so so so honestly illustrative of the complex dynamics that racism creates. love, hate, fear, protection, need for family, sexual desire, just... everything is so intertwined. and the characters here really bring all of those things to life. excellent read.

@@ -12,6 +12,7 @@ sample: false
 tags:
   - favorite
   - on-loan
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1388180018i/72657.jpg"
 ---
 
 8 august 2018

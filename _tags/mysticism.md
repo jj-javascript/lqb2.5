@@ -1,4 +1,0 @@
----
-name: Mysticism
-slug: mysticism
----

@@ -11,6 +11,7 @@ year_read: 2018
 sample: false
 tags:
   - futurism
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1504687485i/6602919.jpg"
 ---
 
 this book. just. wow. i saw another review somewhere that said this line (which i fully agree with): “this book is philosophy disguised as sci-fi.” it starts out slow, but it’s all brilliantly planned. i love how elements that seem totally mundane and useless come back around as plot points or in the conversations of characters later on.

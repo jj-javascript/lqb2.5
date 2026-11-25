@@ -9,6 +9,7 @@ highlights: https://docs.google.com/document/d/1fRRpLkOzo2mZGB-JXRdEi7ONLmgQtz7W
 review: true
 year_read: 2018
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1327000436i/6962392.jpg"
 ---
 
 so my friend, annemarie, got me this book, mostly as a joke (i think). at first i was only gonna read it to honor the gift, but two things emerged. first: this book was a fascinating window into gender dynamics during the 1980s. the way the author writes about who was expected to do what in the household is striking. i knew/know sexist gender roles are a thing and were more of a thing in recent american history. but DAMN i didn’t know it was like THIS. second: there actually were a good number of tips in the book, hah! i marked it all up and someday, sometime, i’ll type up the quote from it… someday…

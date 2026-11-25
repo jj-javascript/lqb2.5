@@ -1,4 +1,0 @@
----
-name: Coaching
-slug: coaching
----

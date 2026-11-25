@@ -9,6 +9,7 @@ highlights: https://docs.google.com/document/d/1BXNjEWNht46wTHFlymfWy00b15RJYk2K
 review: false
 year_read: 2019
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg"
 ---
 
 No matter your goals, Atomic Habits offers a proven framework for improving—every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results.

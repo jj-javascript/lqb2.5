@@ -1,4 +1,0 @@
----
-name: Futurism
-slug: futurism
----

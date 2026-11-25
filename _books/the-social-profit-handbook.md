@@ -12,6 +12,7 @@ sample: false
 tags:
   - business-management
   - consulting
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1431282020i/25143885.jpg"
 ---
 
 What are the main ideas? 

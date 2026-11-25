@@ -11,6 +11,7 @@ year_read: 2020
 sample: false
 tags:
   - movement
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1348991658i/9674787.jpg"
 ---
 
 ht aisha shillingford circa 2017

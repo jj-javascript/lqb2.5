@@ -11,6 +11,7 @@ year_read: 2019
 tags:
   - spirituality
   - buddhism
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1320448079i/95747.jpg"
 ---
 
 \*\*What are the main ideas?\*\*

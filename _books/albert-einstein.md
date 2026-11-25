@@ -9,6 +9,7 @@ highlights: https://docs.google.com/document/d/1xgYK7_sZVQVE3DXt3t4_heAOO103ULR4
 review: true
 year_read: 2017
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1348040208i/231615.jpg"
 ---
 
 recommended and gifted by ross chanowski

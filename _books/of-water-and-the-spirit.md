@@ -9,6 +9,7 @@ highlights: https://docs.google.com/document/d/1Xbl9Yyl0WMnoL9ZHtfIbTLrMKyfZs2PC
 review: false
 year_read: 2018
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1788509098i/192354.jpg"
 ---
 
 Malidoma Patrice Some was born in a Dagara Village, however he was soon to be abducted to a Jesuit school, where he remained for the next fifteen years, being harshly indoctrinated into European ways of thought and worship. The story tells of his return to his people, his hard initiation back into those people, which lead to his desire to convey their knowledge to the world. "Of Water and the Spirit" is the result of that desire; it is a sharing of living African traditions, offered in compassion for those struggling with our contemporary crisis of the spirit.

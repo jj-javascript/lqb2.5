@@ -11,6 +11,7 @@ sample: false
 tags:
   - poetry
   - race
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1420944502i/20613761.jpg"
 ---
 
 devastating. unbelievably powerful. rankine's flow between prose, verse, poetry, fiction, and nonfiction parallels her experience and explanation of race and life. the sections alternate between microaggression vignettes, storytelling, and poetry that, combined, left me literally angry, crying, and soothed. had to read it in two days because i literally couldn't take it.

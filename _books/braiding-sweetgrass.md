@@ -11,6 +11,7 @@ year_read: 2018
 sample: false
 tags:
   - indigenous-wisdom
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1366775928i/17465709.jpg"
 ---
 
 **What are the main ideas?** 

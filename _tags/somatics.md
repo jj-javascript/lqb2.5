@@ -1,4 +1,0 @@
----
-name: Somatics
-slug: somatics
----

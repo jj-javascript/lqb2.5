@@ -1,4 +1,0 @@
----
-name: Love
-slug: love
----

@@ -10,6 +10,7 @@ year_read: 2017
 sample: false
 tags:
   - poetry
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1727684138i/13376363.jpg"
 ---
 
 blisteringly hot to the touch. these poems are searing in their brevity and weight. it seems that the fewer words in a poem, the more punch it packs. shire here goes deep (using a tiny number of words) into family, sexual violence, love, and memory. favorite poems in this collection: grandmother's hands, birds, the kitchen, fire, you were conceived, ugly, in love and in war.

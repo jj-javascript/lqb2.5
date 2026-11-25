@@ -1,0 +1,4 @@
+---
+name: Narcissism
+slug: narcissism
+---

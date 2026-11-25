@@ -12,6 +12,7 @@ sample: false
 tags:
   - all-black-everything
   - fiction
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1714685248i/38461.jpg"
 ---
 
 literally so impressed. the book has unbelievable time travel that feels just like life (traumatic blurriness and all). flowing tumbling sections of memory swirled right in with a primary storyline in way that just is glorious. and the beautifully, terribly integrated commentary on race, gender, class, and amerikkka is ::chef kiss::

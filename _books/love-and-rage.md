@@ -14,6 +14,7 @@ tags:
   - all-queer-everything
   - anger
   - buddhism
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1589264715i/48509453.jpg"
 ---
 
 love and rage book review

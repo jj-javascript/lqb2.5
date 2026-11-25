@@ -9,6 +9,7 @@ highlights: https://docs.google.com/document/d/1UDLUyfHz8hn-xD9BVJkq2E7JQR8JWShS
 review: true
 year_read: 2018
 sample: false
+cover_source_url: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1747666075i/17601.jpg"
 ---
 
 ht kimberly hunter (21 dec 2016)
