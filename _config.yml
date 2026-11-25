@@ -27,16 +27,11 @@ github_username:  lqb2
 markdown: kramdown
 
 # Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+# A custom `exclude` list replaces Jekyll 3.10's defaults; it does not extend
+# them. The defaults are repeated first so a checkout with gems in
+# vendor/bundle (ruby/setup-ruby's bundler cache on CI) is not read as site
+# content. The test config must not set its own `exclude` — that array would
+# replace this one. See tests/fixtures/_config_test.yml.
 
 plugins:
   - jekyll-paginate
@@ -53,7 +48,20 @@ paginate: 1
 paginate_path: "/page/:num/"
 
 exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
   - harvest.py
   - import_queue.py
   - harvest-report.txt
   - verify-build.sh
+  - tests
+  - package.json
+  - package-lock.json
+  - playwright.config.ts
+  - playwright-report
+  - test-results

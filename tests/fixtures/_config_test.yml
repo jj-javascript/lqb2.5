@@ -5,11 +5,6 @@
 url: "http://127.0.0.1:4173"
 baseurl: ""
 
-# Keep test tooling out of the built site. Jekyll deep-merges config files
-# and concatenates `exclude` arrays, so the production excludes still apply.
-exclude:
-  - tests
-  - node_modules
-  - package.json
-  - package-lock.json
-  - playwright.config.ts
+# Do not set `exclude` here. Jekyll replaces arrays when it merges config
+# files, so a list in this file would drop _config.yml's exclude — including
+# vendor/bundle/, which CI populates with gems. Test tooling is listed there.
