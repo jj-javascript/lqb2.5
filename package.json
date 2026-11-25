@@ -1,0 +1,15 @@
+{
+  "name": "lqb2-site-tests",
+  "private": true,
+  "version": "1.0.0",
+  "description": "E2E (Playwright) + unit (pytest) tests for the bookshelf and book import pipeline",
+  "scripts": {
+    "test": "python3 -m pytest tests/python && playwright test",
+    "test:python": "python3 -m pytest tests/python",
+    "test:e2e": "playwright test",
+    "test:e2e:remote": "E2E_BASE_URL=${E2E_BASE_URL:-https://www.lqb2.co/libraryviz/} playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

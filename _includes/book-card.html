@@ -16,20 +16,21 @@
     {% assign filter_json = filter_json | append: '"' | append: slug | append: '"' %}
   {% endif %}
 {% endfor %}
-<article class="book-card{% unless include.book.content %} book-card--no-review{% endunless %}"
-         data-title="{{ include.book.title | downcase }}"
-         data-author="{{ include.book.author | downcase }}"
+{% assign body_text = include.book.content | strip %}
+<article class="book-card{% if body_text == "" %} book-card--no-review{% endif %}"
+         data-title="{{ include.book.title | downcase | escape }}"
+         data-author="{{ include.book.author | downcase | escape }}"
          data-year="{{ include.book.year_read }}"
          data-categories='[{{ filter_json }}]'
          tabindex="0"
-         aria-label="Flip to see review for {{ include.book.title }}">
+         aria-label="Flip to see review for {{ include.book.title | escape }}">
   <div class="book-shelf-tilt">
     <div class="book-flip">
     <div class="book-flip-inner">
       <div class="book-flip-front">
         <img class="book-cover"
              src="{{ include.book.cover | absolute_url }}"
-             alt="{{ include.book.title }} by {{ include.book.author }}"
+             alt="{{ include.book.title | escape }} by {{ include.book.author | escape }}"
              width="{{ include.book.cover_width | default: 200 }}"
              height="{{ include.book.cover_height | default: 300 }}"
              loading="lazy">
@@ -51,7 +52,7 @@
             {% endif %}
           </div>
           <div class="book-back-scroll">
-            {% if include.book.content != "" %}
+            {% if body_text != "" %}
               {% if include.book.review %}
                 <h4 class="book-review-heading">My review</h4>
               {% else %}
@@ -68,8 +69,8 @@
     </div>
   </div>
   <span class="visually-hidden book-meta">
-    <h3 class="book-title">{{ include.book.title }}</h3>
-    <p class="book-author">{{ include.book.author }}</p>
+    <h3 class="book-title">{{ include.book.title | escape }}</h3>
+    <p class="book-author">{{ include.book.author | escape }}</p>
     {% if include.book.year_read %}
       <p class="book-year">Read {{ include.book.year_read }}</p>
     {% endif %}

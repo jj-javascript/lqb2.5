@@ -219,9 +219,15 @@ def set_scalar(fm_text: str, key: str, rendered_value: str) -> str:
 
 
 def set_list(fm_text: str, key: str, values: list[str]) -> str:
-    """Replace or append a block-style list field (minimal-diff edit)."""
+    """Replace or append a block-style list field (minimal-diff edit).
+
+    List items may be indented (import_queue's own style) or flush-left
+    (PyYAML's default dump style, also used by some CMS editors); the
+    pattern must consume either form or the old items would be left
+    dangling after the replacement block.
+    """
     block = key + ":\n" + "\n".join(f"  - {v}" for v in values)
-    pattern = rf"^{re.escape(key)}:[^\n]*(?:\n[ \t]+-[^\n]*)*"
+    pattern = rf"^{re.escape(key)}:[^\n]*(?:\n[ \t]*-[^\n]*)*"
     if re.search(pattern, fm_text, re.M):
         return re.sub(pattern, block, fm_text, count=1, flags=re.M)
     return fm_text + "\n" + block if fm_text else block

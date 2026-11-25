@@ -1,0 +1,15 @@
+# Test-only Jekyll config override, merged AFTER _config.yml:
+#   bundle exec jekyll build -d _site_test --config _config.yml,tests/fixtures/_config_test.yml
+# The production config points at the GitHub Pages fork preview with a
+# /lqb2.5 baseurl; the test build serves _site_test/ at the server root.
+url: "http://127.0.0.1:4173"
+baseurl: ""
+
+# Keep test tooling out of the built site. Jekyll deep-merges config files
+# and concatenates `exclude` arrays, so the production excludes still apply.
+exclude:
+  - tests
+  - node_modules
+  - package.json
+  - package-lock.json
+  - playwright.config.ts
