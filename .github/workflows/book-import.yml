@@ -18,6 +18,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 jobs:
   import:
@@ -48,3 +49,13 @@ jobs:
             git commit -m "chore: import books from Sveltia queue"
             git push
           fi
+
+      - name: Request GitHub Pages rebuild
+        # Commits made with GITHUB_TOKEN do not trigger the legacy Pages
+        # build, so request one explicitly; otherwise imported books would
+        # not appear on the live site until the next human commit.
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
+        continue-on-error: true
