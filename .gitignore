@@ -16,3 +16,4 @@ test-results/
 # ignored so an interrupted test run can never accidentally commit them.
 _books/zz-fixture-*.md
 assets/images/books/zz-fixture-*.webp
+.cursor/
